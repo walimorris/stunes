@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" th:href="|https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css|"/>
+    <link rel="stylesheet" href="../public/css/styles.css" th:href="@{/css/styles.css}" />
+    <link rel="icon" href="../public/img/favicon.ico" th:href="@{/img/favicon.ico}" />
+
+    <title>STunes</title>
+</head>
+
+<body>
+<div class="container">
+    <h2>Welcome to STunes, powered by Amazon Aurora and Spring Framework.</h2>
+
+    <p>The STunes application uses multiple AWS Services and the Java V2 API. Inspired by Robert Shield's SQL Quickstart Guide.<p>
+    <table>
+        <tr>
+            <th>AlbumId</th>
+            <th>Title</th>
+            <th>ArtistId</th>
+        </tr>
+        <tr th:each="album : ${albums}">
+            <td class="align-middle" th:text="${album.albumId}"></td>
+            <td class="align-middle" th:text="${album.title}"></td>
+            <td class="align-middle" th:text="${album.artistId}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

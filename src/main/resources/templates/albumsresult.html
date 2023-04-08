@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" th:href="|https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css|"/>
+    <link rel="stylesheet" href="../public/css/styles.css" th:href="@{/css/styles.css}" />
+    <link rel="icon" href="../public/img/favicon.ico" th:href="@{/img/favicon.ico}" />
+
+    <title>Albums</title>
+</head>
+
+<body>
+<ul class="nav">
+    <li class="nav-item">
+        <a class="nav-link active" href="/">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="/albums">Albums Search</a>
+    </li>
+</ul>
+<div class="container">
+    <h2>Stunes Albums</h2>
+
+    <p>Search for over 300+ Albums<p>
+    <h1>Result</h1>
+    <table th:switch="${albumsList.isEmpty()}">
+        <tr th:case="true">
+            <td class="text-center" colspan="3">Darn it... we don't have an album like that!</td>
+        </tr>
+        <tr th:case="false">
+            <th>albumId</th>
+            <th>title</th>
+            <th>artistId</th>
+        </tr>
+        <tr th:each="album : ${albumsList}">
+            <td class="align-middle" th:text="${album.albumId}"></td>
+            <td class="align-middle" th:text="${album.title}"></td>
+            <td class="align-middle" th:text="${album.artistId}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

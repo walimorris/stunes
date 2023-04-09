@@ -10,11 +10,14 @@
     <link rel="stylesheet" href="../public/css/styles.css" th:href="@{/css/styles.css}" />
     <link rel="icon" href="../public/img/favicon.ico" th:href="@{/img/favicon.ico}" />
 
-    <title>STunes</title>
+    <title>Artists</title>
 </head>
 
 <body>
 <ul class="nav">
+    <li class="nav-item">
+        <a class="nav-link active" href="/">Home</a>
+    </li>
     <li class="nav-item">
         <a class="nav-link active" href="/albums">Albums Search</a>
     </li>
@@ -23,10 +26,23 @@
     </li>
 </ul>
 <div class="container">
-    <h2>Welcome to STunes, powered by Amazon Aurora and Spring Framework.</h2>
+    <h2>Stunes Albums</h2>
 
-    <p>The STunes application uses multiple AWS Services and the Java V2 API. Inspired by Robert Shield's SQL Quickstart Guide.<p>
-
+    <p>Search for over 200+ Artists<p>
+    <h1>Result</h1>
+    <table th:switch="${artistsList.isEmpty()}">
+        <tr th:case="true">
+            <td class="text-center" colspan="3">Darn it... we don't have artist with a name like that!</td>
+        </tr>
+        <tr th:case="false">
+            <th>artistId</th>
+            <th>Name</th>
+        </tr>
+        <tr th:each="artist : ${artistsList}">
+            <td class="align-middle" th:text="${artist.artistId}"></td>
+            <td class="align-middle" th:text="${artist.name}"></td>
+        </tr>
+    </table>
 </div>
 </body>
 </html>

@@ -10,23 +10,27 @@
     <link rel="stylesheet" href="../public/css/styles.css" th:href="@{/css/styles.css}" />
     <link rel="icon" href="../public/img/favicon.ico" th:href="@{/img/favicon.ico}" />
 
-    <title>STunes</title>
+    <title>Artists</title>
 </head>
 
 <body>
 <ul class="nav">
     <li class="nav-item">
-        <a class="nav-link active" href="/albums">Albums Search</a>
+        <a class="nav-link active" href="/">Home</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link active" href="/artists">Artists Search</a>
+        <a class="nav-link active" href="/albums">Albums Search</a>
     </li>
 </ul>
 <div class="container">
-    <h2>Welcome to STunes, powered by Amazon Aurora and Spring Framework.</h2>
+    <h2>Search Artists</h2>
 
-    <p>The STunes application uses multiple AWS Services and the Java V2 API. Inspired by Robert Shield's SQL Quickstart Guide.<p>
-
+    <p>Search for over 200+ Artists<p>
+    <h1>Form</h1>
+    <form action="#" th:action="@{/artists}" th:object="${artists}" method="post">
+        <p>Artist Name: <input type="text" th:field="*{name}" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
 </div>
 </body>
 </html>

@@ -27,7 +27,7 @@
 
     <p>Search for over 200+ Artists<p>
     <h1>Form</h1>
-    <form action="#" th:action="@{/artists}" th:object="${artists}" method="post">
+    <form th:action="@{/artists}" th:object="${artists}" method="post">
         <p>Artist Name: <input type="text" th:field="*{name}" /></p>
         <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
     </form>

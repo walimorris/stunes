@@ -27,7 +27,7 @@
 
     <p>Search for over 300+ Albums<p>
     <h1>Form</h1>
-    <form action="#" th:action="@{/albums}" th:object="${albums}" method="post">
+    <form th:action="@{/albums}" th:object="${albums}" method="post">
         <p>Title: <input type="text" th:field="*{title}" /></p>
         <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
     </form>

@@ -37,10 +37,17 @@
         <tr th:case="false">
             <th>artistId</th>
             <th>Name</th>
+            <th>action</th>
         </tr>
         <tr th:each="artist : ${artistsList}">
             <td class="align-middle" th:text="${artist.artistId}"></td>
             <td class="align-middle" th:text="${artist.name}"></td>
+            <td class="align-middle">
+                <form th:action="@{/albums/fromartist}" method="post">
+                    <input type="hidden" name="id" th:value="${artist.artistId}">
+                    <button type="submit">All Albums</button>
+                </form>
+            </td>
         </tr>
     </table>
 </div>

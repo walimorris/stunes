@@ -30,11 +30,10 @@
 
     <p>View Top Performing Employees, Top paying customers and more!<p>
     <h1>Selections:</h1>
-    <p>In development...</p>
-<!--    <form th:action="@{/artists}" th:object="${artists}" method="post">-->
-<!--        <p>Artist Name: <input type="text" th:field="*{name}" /></p>-->
-<!--        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>-->
-<!--    </form>-->
+    <p>Top Paying Customers</p>
+    <form th:action="@{/performance/topfivecustomers}" method="post">
+        <button type="submit">Top 5</button>
+    </form>
 </div>
 </body>
 </html>

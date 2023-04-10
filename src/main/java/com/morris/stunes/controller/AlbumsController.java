@@ -26,7 +26,6 @@ public class AlbumsController {
 
     @PostMapping("/albums")
     public String submitAlbumQuery(@ModelAttribute Album albums, Model model) {
-        System.out.println("inside");
         List<Album> resultingAlbums = rdsAurora.getAlbumsLikeTitle(albums.getTitle());
         model.addAttribute("albumsList", resultingAlbums);
         return "albumsresult";

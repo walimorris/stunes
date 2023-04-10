@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" th:href="|https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css|"/>
+    <link rel="stylesheet" href="../public/css/styles.css" th:href="@{/css/styles.css}" />
+    <link rel="icon" href="../public/img/favicon.ico" th:href="@{/img/favicon.ico}" />
+
+    <title>Top 5 Customers</title>
+</head>
+
+<body>
+<ul class="nav">
+    <li class="nav-item">
+        <a class="nav-link active" href="/">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="/albums">Albums Search</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="/artists">Artists Search</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="/performance">Performance Metrics</a>
+    </li>
+</ul>
+<div class="container">
+    <h2>Top 5 Customers</h2>
+
+    <p>Review Top 5 Customers<p>
+    <h1>Result</h1>
+    <table th:switch="${topfive.isEmpty()}">
+        <tr th:case="true">
+            <td class="text-center" colspan="3">Darn it... customers is lacking!</td>
+        </tr>
+        <tr th:case="false">
+            <th>customerId</th>
+            <th>first name</th>
+            <th>lastname</th>
+            <th>company</th>
+            <th>address</th>
+            <th>city</th>
+            <th>state</th>
+            <th>country</th>
+            <th>postal code</th>
+            <th>phone</th>
+            <th>fax</th>
+            <th>email</th>
+            <th>support rep id</th>
+        </tr>
+        <tr th:each="customer : ${topfive}">
+            <td class="align-middle" th:text="${customer.customerId}"></td>
+            <td class="align-middle" th:text="${customer.firstName}"></td>
+            <td class="align-middle" th:text="${customer.lastName}"></td>
+            <td class="align-middle" th:text="${customer.company}"></td>
+            <td class="align-middle" th:text="${customer.address}"></td>
+            <td class="align-middle" th:text="${customer.city}"></td>
+            <td class="align-middle" th:text="${customer.state}"></td>
+            <td class="align-middle" th:text="${customer.country}"></td>
+            <td class="align-middle" th:text="${customer.postalCode}"></td>
+            <td class="align-middle" th:text="${customer.phone}"></td>
+            <td class="align-middle" th:text="${customer.fax}"></td>
+            <td class="align-middle" th:text="${customer.email}"></td>
+            <td class="align-middle" th:text="${customer.supportRepId}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

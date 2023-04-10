@@ -1,7 +1,17 @@
 package com.morris.stunes.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "artists")
 public class Artist {
+
+    @Id
+    @Column(name = "artistId", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int artistId;
+
+    @Column(name = "name")
     private String name;
 
     public int getArtistId() {

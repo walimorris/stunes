@@ -32,6 +32,7 @@ build/
 ### VS Code ###
 .vscode/
 
-### properties ###
+### properties/configs ###
 /src/main/resources/application.properties
 /src/main/resources/secrets.properties
+/src/main/resources/META-INF/persistence.xml

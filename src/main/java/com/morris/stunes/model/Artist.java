@@ -7,12 +7,18 @@ import javax.persistence.*;
 public class Artist {
 
     @Id
-    @Column(name = "artistId", nullable = false)
+    @Column(name = "ArtistId", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int artistId;
 
-    @Column(name = "name")
+    @Column(name = "Name")
     private String name;
+
+    public Artist() {}
+
+    public Artist(String name) {
+        this.name = name;
+    }
 
     public int getArtistId() {
         return this.artistId;
@@ -28,5 +34,10 @@ public class Artist {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Artist(artistId=" + this.artistId + ", Name=" + this.name + ")";
     }
 }

@@ -24,7 +24,7 @@ public class AuroraSecretsManagerHelper {
     public AuroraSecretsManagerHelper() {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Properties.class);
         Properties auroraPropertiesContext = context.getBean(Properties.class);
-        this.auroraProperties = auroraPropertiesContext.auroraSecretsProperties();
+        this.auroraProperties = auroraPropertiesContext.AuroraSecretsProperties();
         context.close();
     }
 

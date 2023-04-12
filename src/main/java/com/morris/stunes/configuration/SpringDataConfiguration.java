@@ -1,6 +1,7 @@
 package com.morris.stunes.configuration;
 
 import com.morris.stunes.util.RDSAuroraConnectionHelper;
+import com.morris.stunes.util.SpringApplicationPropertiesHelper;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -24,6 +25,10 @@ import java.util.Properties;
 @PropertySource("classpath:secrets.properties")
 public class SpringDataConfiguration {
 
+    private static final String DDL_AUTO = "hibernate.hbm2ddl.auto";
+    private static final String DIALECT = "hibernate.dialect";
+    private static final String PACKAGES_TO_SCAN = "com.morris.stunes";
+
     @Bean
     public DataSource dataSource() {
         return new RDSAuroraConnectionHelper().RDSAuroraDatasource();
@@ -38,7 +43,7 @@ public class SpringDataConfiguration {
     public JpaVendorAdapter jpaVendorAdapter() {
         HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
         jpaVendorAdapter.setDatabase(Database.MYSQL);
-        jpaVendorAdapter.setShowSql(true);
+        jpaVendorAdapter.setShowSql(Boolean.getBoolean(new SpringApplicationPropertiesHelper().getJpaShowSql()));
         return jpaVendorAdapter;
     }
 
@@ -47,11 +52,11 @@ public class SpringDataConfiguration {
         LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         localContainerEntityManagerFactoryBean.setDataSource(dataSource());
         Properties properties = new Properties();
-        properties.put("hibernate.hbm2ddl.auto", "validate");
-        properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL57Dialect");
+        properties.put(DDL_AUTO, new SpringApplicationPropertiesHelper().getJpaDdlAuto());
+        properties.put(DIALECT, new SpringApplicationPropertiesHelper().getJpaHibernateDialect());
         localContainerEntityManagerFactoryBean.setJpaProperties(properties);
         localContainerEntityManagerFactoryBean.setJpaVendorAdapter(jpaVendorAdapter());
-        localContainerEntityManagerFactoryBean.setPackagesToScan("com.morris.stunes");
+        localContainerEntityManagerFactoryBean.setPackagesToScan(PACKAGES_TO_SCAN);
         return localContainerEntityManagerFactoryBean;
     }
 }

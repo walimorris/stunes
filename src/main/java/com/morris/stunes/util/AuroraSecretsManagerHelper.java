@@ -1,33 +1,48 @@
 package com.morris.stunes.util;
 
-import com.morris.stunes.service.Properties;
+import com.morris.stunes.configuration.Properties;
 import org.json.JSONObject;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import software.amazon.awssdk.services.secretsmanager.SecretsManagerClient;
 import software.amazon.awssdk.services.secretsmanager.model.GetSecretValueRequest;
 import software.amazon.awssdk.services.secretsmanager.model.GetSecretValueResponse;
 
+import java.util.Map;
+
 public class AuroraSecretsManagerHelper {
 
-    private static final String auroraWriterName = Properties.auroraWriterName;
-    private static final String auroraWriterRegion = Properties.auroraWriterRegion;
-    private static final String auroraWriterUrl = Properties.auroraWriterUrl;
+    private static final String AURORA_WRITER_NAME = "aurora-writer-name";
+    private static final String AURORA_WRITER_REGION = "aurora-writer-region";
+    private static final String AURORA_WRITER_URL = "aurora-writer-url";
 
     private static final String USER_NAME = "username";
     private static final String PASS_WORD = "password";
     private static final String STUNES_WRITER_URL = "stunes-writer-url";
 
-    public static String getAuroraWriterUserName() {
-        JSONObject secretString = getAuroraSecretString(auroraWriterName, auroraWriterRegion);
+    private final Map<String, String> auroraProperties;
+
+    public AuroraSecretsManagerHelper() {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Properties.class);
+        Properties auroraPropertiesContext = context.getBean(Properties.class);
+        this.auroraProperties = auroraPropertiesContext.auroraSecretsProperties();
+        context.close();
+    }
+
+    public String getAuroraWriterUserName() {
+        JSONObject secretString = getAuroraSecretString(auroraProperties.get(AURORA_WRITER_NAME),
+                auroraProperties.get(AURORA_WRITER_REGION));
         return secretString.getString(USER_NAME);
     }
 
-    public static String getAuroraWriterPassword() {
-        JSONObject secretString = getAuroraSecretString(auroraWriterName, auroraWriterRegion);
+    public String getAuroraWriterPassword() {
+        JSONObject secretString = getAuroraSecretString(auroraProperties.get(AURORA_WRITER_NAME),
+                auroraProperties.get(AURORA_WRITER_REGION));
         return secretString.getString(PASS_WORD);
     }
 
-    public static String getAuroraWriterUrl() {
-        JSONObject secretString = getAuroraSecretString(auroraWriterUrl, auroraWriterRegion);
+    public String getAuroraWriterUrl() {
+        JSONObject secretString = getAuroraSecretString(auroraProperties.get(AURORA_WRITER_URL),
+                auroraProperties.get(AURORA_WRITER_REGION));
         return secretString.getString(STUNES_WRITER_URL);
     }
 

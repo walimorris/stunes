@@ -1,5 +1,8 @@
 package com.morris.stunes.util;
 
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -8,12 +11,14 @@ public class RDSAuroraConnectionHelper {
     private final String url;
     private final String username;
     private final String password;
+
     private static RDSAuroraConnectionHelper instance;
 
-    private RDSAuroraConnectionHelper() {
-        username = AuroraSecretsManagerHelper.getAuroraWriterUserName();
-        password = AuroraSecretsManagerHelper.getAuroraWriterPassword();
-        url = AuroraSecretsManagerHelper.getAuroraWriterUrl();
+    public RDSAuroraConnectionHelper() {
+        AuroraSecretsManagerHelper auroraSecretsManagerHelper = new AuroraSecretsManagerHelper();
+        username = auroraSecretsManagerHelper.getAuroraWriterUserName();
+        password = auroraSecretsManagerHelper.getAuroraWriterPassword();
+        url = auroraSecretsManagerHelper.getAuroraWriterUrl();
     }
 
     public static Connection getConnection() throws SQLException {
@@ -38,5 +43,14 @@ public class RDSAuroraConnectionHelper {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public DataSource RDSAuroraDatasource() {
+        DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
+        driverManagerDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        driverManagerDataSource.setUrl(this.url);
+        driverManagerDataSource.setUsername(this.username);
+        driverManagerDataSource.setPassword(this.password);
+        return driverManagerDataSource;
     }
 }

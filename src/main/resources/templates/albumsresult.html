@@ -45,7 +45,7 @@
         <tr th:each="album : ${albumsList}">
             <td class="align-middle" th:text="${album.albumId}"></td>
             <td class="align-middle" th:text="${album.title}"></td>
-            <td class="align-middle" th:text="${album.artistId}"></td>
+            <td class="align-middle" th:text="${album.artist.artistId}"></td>
         </tr>
     </table>
 </div>

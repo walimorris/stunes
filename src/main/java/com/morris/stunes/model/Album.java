@@ -1,8 +1,14 @@
 package com.morris.stunes.model;
 
-import org.springframework.lang.NonNull;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.ManyToOne;
+import javax.persistence.GenerationType;
+import javax.persistence.JoinColumn;
+import javax.persistence.FetchType;
 
 @Entity
 @Table(name = "albums")
@@ -13,7 +19,9 @@ public class Album {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int albumId;
 
-    private int artistId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ArtistId")
+    private Artist artist;
 
     @Column(name = "Title")
     private String title;
@@ -32,12 +40,12 @@ public class Album {
         this.albumId = albumId;
     }
 
-    public int getArtistId() {
-        return this.artistId;
+    public Artist getArtist() {
+        return this.artist;
     }
 
-    public void setArtistId(int artistId) {
-        this.artistId = artistId;
+    public void setArtist(Artist artist) {
+        this.artist = artist;
     }
 
     public String getTitle() {

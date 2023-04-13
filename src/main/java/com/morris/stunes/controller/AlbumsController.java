@@ -1,7 +1,7 @@
 package com.morris.stunes.controller;
 
 import com.morris.stunes.model.Album;
-import com.morris.stunes.repository.RepositoryRDSAurora;
+import com.morris.stunes.repository.AuroraAlbumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +16,7 @@ import java.util.List;
 public class AlbumsController {
 
     @Autowired
-    RepositoryRDSAurora rdsAurora;
+    AuroraAlbumRepository auroraAlbumRepository;
 
     @GetMapping("/albums")
     public String albumsForm(Model model) {
@@ -26,14 +26,15 @@ public class AlbumsController {
 
     @PostMapping("/albums")
     public String submitAlbumQuery(@ModelAttribute Album albums, Model model) {
-        List<Album> resultingAlbums = rdsAurora.getAlbumsLikeTitle(albums.getTitle());
+        List<Album> resultingAlbums = auroraAlbumRepository.findByTitleLike(
+                albums.getTitle(), albums.getTitle());
         model.addAttribute("albumsList", resultingAlbums);
         return "albumsresult";
     }
 
     @PostMapping("/albums/fromartist")
     public String submitAlbumQuery(Model model, @RequestParam(value = "id") int artistId) {
-        List<Album> resultingAlbums = rdsAurora.getAllAlbumsWithArtistId(artistId);
+        List<Album> resultingAlbums = auroraAlbumRepository.findByArtistId(artistId);
         model.addAttribute("albumsList", resultingAlbums);
         return "albumsresult";
     }

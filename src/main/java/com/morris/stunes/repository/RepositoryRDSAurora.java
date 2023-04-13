@@ -13,101 +13,6 @@ import java.util.List;
 @Component
 public class RepositoryRDSAurora {
 
-    public List<Album> getAllAlbums() {
-        Connection connection;
-        List<Album> albums = null;
-
-        try {
-            connection = RDSAuroraConnectionHelper.getConnection();
-            if (connection != null) {
-                PreparedStatement statement = connection.prepareStatement("SELECT AlbumId, Title, ArtistId FROM albums;");
-                ResultSet results = statement.executeQuery();
-                albums = getPreparedStatementAlbumResults(results);
-            }
-            RDSAuroraConnectionHelper.close(connection);
-            return albums;
-
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-            System.exit(1);
-        }
-        return albums;
-    }
-
-    public List<Album> getAlbumsLikeTitle(String title) {
-        Connection connection;
-        List<Album> albums = null;
-
-        try {
-            connection = RDSAuroraConnectionHelper.getConnection();
-            if (connection != null) {
-                PreparedStatement statement = connection.prepareStatement(
-                        "SELECT AlbumId, Title, ArtistId FROM albums WHERE Title LIKE ? OR Title LIKE ?;"
-                );
-                statement.setString(1, "%" + title + "%");
-                statement.setString(2, title + "%");
-                ResultSet results = statement.executeQuery();
-                albums = getPreparedStatementAlbumResults(results);
-            }
-            RDSAuroraConnectionHelper.close(connection);
-            return albums;
-
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-            System.exit(1);
-        }
-        return albums;
-    }
-
-    public List<Album> getAllAlbumsWithArtistId(int id) {
-        Connection connection;
-        List<Album> albums = null;
-
-        try {
-            connection = RDSAuroraConnectionHelper.getConnection();
-            if (connection != null) {
-                PreparedStatement statement = connection.prepareStatement(
-                        "SELECT AlbumId, Title, ArtistId FROM albums WHERE ArtistId = ?;"
-                );
-                statement.setInt(1, id);
-                ResultSet results = statement.executeQuery();
-                albums = getPreparedStatementAlbumResults(results);
-            }
-            RDSAuroraConnectionHelper.close(connection);
-            return albums;
-
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-            System.exit(1);
-        }
-        return albums;
-    }
-
-    public List<Artist> getArtistsLikeName(String name) {
-        Connection connection;
-        List<Artist> artists = null;
-
-        try {
-            connection = RDSAuroraConnectionHelper.getConnection();
-            if (connection != null) {
-                PreparedStatement statement = connection.prepareStatement(
-                        "SELECT ArtistId, Name FROM artists WHERE Name LIKE ? OR Name LIKE ?;"
-                );
-                statement.setString(1, "%" + name + "%");
-                statement.setString(2, name + "%");
-                ResultSet results = statement.executeQuery();
-                artists = getPreparedStatementArtistResults(results);
-            }
-            RDSAuroraConnectionHelper.close(connection);
-            return artists;
-
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-            System.exit(1);
-        }
-        return artists;
-    }
-
     public List<Customer> getTopFiveCustomers() {
         Connection connection;
         List<Customer> customers = null;
@@ -139,7 +44,6 @@ public class RepositoryRDSAurora {
                 Album album = new Album();
                 album.setAlbumId(results.getInt(1));
                 album.setTitle(results.getString(2));
-                album.setArtistId(results.getInt(3));
 
                 queryResults.add(album);
             }
@@ -190,7 +94,6 @@ public class RepositoryRDSAurora {
                 queryResults.add(customer);
             }
         } catch (SQLException e) {
-            System.out.println("shutting down");
             System.out.println(e.getMessage());
             System.exit(1);
         }

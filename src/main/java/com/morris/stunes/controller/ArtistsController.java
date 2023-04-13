@@ -1,7 +1,7 @@
 package com.morris.stunes.controller;
 
 import com.morris.stunes.model.Artist;
-import com.morris.stunes.repository.RepositoryRDSAurora;
+import com.morris.stunes.repository.AuroraArtistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +15,7 @@ import java.util.List;
 public class ArtistsController {
 
     @Autowired
-    RepositoryRDSAurora rdsAurora;
+    AuroraArtistRepository auroraArtistRepository;
 
     @GetMapping("/artists")
     public String artistsForm(Model model) {
@@ -25,7 +25,9 @@ public class ArtistsController {
 
     @PostMapping("/artists")
     public String submitArtistQuery(@ModelAttribute Artist artists, Model model) {
-        List<Artist> artistsLikeList = rdsAurora.getArtistsLikeName(artists.getName());
+        List<Artist> artistsLikeList = auroraArtistRepository.findByNameLike(
+                artists.getName(), artists.getName());
+
         model.addAttribute("artistsList", artistsLikeList);
         return "artistsresult";
     }

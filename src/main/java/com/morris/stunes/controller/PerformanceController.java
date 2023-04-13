@@ -1,7 +1,7 @@
 package com.morris.stunes.controller;
 
 import com.morris.stunes.model.Customer;
-import com.morris.stunes.repository.RepositoryRDSAurora;
+import com.morris.stunes.repository.AuroraCustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +14,7 @@ import java.util.List;
 public class PerformanceController {
 
     @Autowired
-    RepositoryRDSAurora rdsAurora;
+    AuroraCustomerRepository auroraCustomerRepository;
 
     @GetMapping("/performance")
     public String getPerformanceMetrics() {
@@ -23,7 +23,7 @@ public class PerformanceController {
 
     @PostMapping("/performance/topfivecustomers")
     public String getTopFiveCustomers(Model model) {
-        List<Customer> topFiveCustomersList = rdsAurora.getTopFiveCustomers();
+        List<Customer> topFiveCustomersList = auroraCustomerRepository.findByTopFiveCustomers();
         model.addAttribute("topfive", topFiveCustomersList);
         return "performanceresult";
     }

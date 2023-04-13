@@ -1,19 +1,66 @@
 package com.morris.stunes.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.OneToOne;
+import javax.persistence.GenerationType;
+import javax.persistence.JoinColumn;
+import javax.persistence.FetchType;
+
+@Entity
+@Table(name = "customers")
 public class Customer {
+
+    @Id
+    @Column(name = "CustomerId", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int customerId;
+
+    @Column(name = "FirstName")
     private String firstName;
+
+    @Column(name = "LastName")
     private String lastName;
+
+    @Column(name = "Company")
     private String company;
+
+    @Column(name = "Address")
     private String address;
+
+    @Column(name = "City")
     private String city;
+
+    @Column(name = "State")
     private String state;
+
+    @Column(name = "Country")
     private String country;
+
+    @Column(name = "PostalCode")
     private String postalCode;
+
+    @Column(name = "Phone")
     private String phone;
+
+    @Column(name = "Fax")
     private String fax;
+
+    @Column(name = "Email")
     private String email;
-    private int supportRepId;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "SupportRepId")
+    private Employee employee;
+
+    public Customer() {}
+
+    public Customer(int customerId) {
+        this.customerId = customerId;
+    }
 
     public int getCustomerId() {
         return customerId;
@@ -111,11 +158,11 @@ public class Customer {
         this.email = email;
     }
 
-    public int getSupportRepId() {
-        return supportRepId;
+    public Employee getEmployeeSupportRep() {
+        return this.employee;
     }
 
-    public void setSupportRepId(int supportRepId) {
-        this.supportRepId = supportRepId;
+    public void setEmployeeSupportRep(Employee employee) {
+        this.employee = employee;
     }
 }

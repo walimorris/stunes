@@ -1,23 +1,69 @@
 package com.morris.stunes.model;
 
-import java.sql.Date;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import java.sql.Timestamp;
 
+@Entity
+@Table(name = "employees")
 public class Employee {
+
+    @Id
+    @Column(name = "EmployeeId", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int employeeId;
+
+    @Column(name = "LastName")
     private String lastName;
+
+    @Column(name = "FirstName")
     private String firstName;
+
+    @Column(name = "Title")
     private String title;
+
+    @Column(name = "ReportsTo")
     private int reportsTo;
-    private Date birthdate;
-    private Date hireDate;
+
+    @Column(name = "BirthDate")
+    private Timestamp birthdate;
+
+    @Column(name = "HireDate")
+    private Timestamp hireDate;
+
+    @Column(name = "Address")
     private String address;
+
+    @Column(name = "City")
     private String city;
+
+    @Column(name = "State")
     private String state;
+
+    @Column(name = "Country")
     private String country;
+
+    @Column(name = "PostalCode")
     private String postalCode;
+
+    @Column(name = "Phone")
     private String phone;
+
+    @Column(name = "Fax")
     private String fax;
+
+    @Column(name = "Email")
     private String email;
+
+    public Employee() {}
+
+    public Employee(int employeeId) {
+        this.employeeId = employeeId;
+    }
 
     public int getEmployeeId() {
         return employeeId;
@@ -59,19 +105,19 @@ public class Employee {
         this.reportsTo = reportsTo;
     }
 
-    public Date getBirthdate() {
+    public Timestamp getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(Timestamp birthdate) {
         this.birthdate = birthdate;
     }
 
-    public Date getHireDate() {
+    public Timestamp getHireDate() {
         return hireDate;
     }
 
-    public void setHireDate(Date hireDate) {
+    public void setHireDate(Timestamp hireDate) {
         this.hireDate = hireDate;
     }
 

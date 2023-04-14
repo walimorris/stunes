@@ -1,44 +1,146 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="stylesheet" th:href="|https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css|"/>
-    <link rel="stylesheet" href="../public/css/styles.css" th:href="@{/css/styles.css}" />
+    <link rel="stylesheet" href="../static/css/index.css" th:href="@{/css/index.css}" />
     <link rel="icon" href="../public/img/favicon.ico" th:href="@{/img/favicon.ico}" />
 
     <title>STunes</title>
 </head>
 
 <body>
-<ul class="nav">
-    <li class="nav-item">
-        <a class="nav-link active" href="/albums">Albums Search</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link active" href="/artists">Artists Search</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link active" href="/performance">Performance Metrics</a>
-    </li>
-</ul>
-<div class="container">
-    <h1>Welcome to STunes</h1>
-    <h3>The STunes application uses multiple AWS Services and the Java V2 API. Inspired by Robert Shield's SQL Quickstart Guide.</h3>
-    <h2>Technologies:</h2>
-    <ul>
-        <li><span><a target="_blank" href="https://www.java.com/en/">Java</a></span></li>
-        <li><span><a target="_blank" href="https://www.mysql.com/">MySQL</a></span></li>
-        <li><span><a target="_blank" href="https://www.thymeleaf.org/">Thymeleaf</a></span></li>
-        <li><span><a target="_blank" href="https://spring.io/">Springboot</a></span></li>
-        <li><span><a target="_blank" href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/">Spring Data JPA</a></span></li>
-        <li><span><a target="_blank" href="https://hibernate.org">Hibernate</a></span></li>
-        <li><span><a target="_blank" href="https://aws.amazon.com/rds/aurora/">Amazon Aurora</a></span></li>
-        <li><span><a target="_blank" href="https://aws.amazon.com/secrets-manager/">AWS Secrets Manager</a></span></li>
-    </ul>
-</div>
+    <nav>
+        <div class="heading">Stunes</div>
+        <div class="navbar">
+            <ul>
+                <li><a href="/albums">Albums Search</a></li>
+                <li><a href="/artists">Artists Search</a></li>
+                <li><a href="/performance">Performance Metrics</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section class="about" id="My Projects">
+        <div class="content">
+            <div class="title">
+                <span>Stunes uses multiple AWS Services and web technologies.<br>
+                    Inspired by Robert Shield's
+                    <a target="_blank" href="https://www.amazon.com/SQL-QuickStart-Guide-Simplified-Manipulating/dp/1945051752">SQL Quickstart Guide</a>.</span>
+            </div>
+            <div class="boxes">
+                <div class="box">
+                    <div class="topic">
+                        <a href="https://www.java.com/en/" target="_blank">
+                            Java
+                        </a>
+                    </div>
+                    <p>
+                        Java is a programming language and
+                        computing platform first released
+                        by Sun Microsystems in 1995
+                    </p>
+                </div>
+                <div class="box">
+                    <div class="topic">
+                        <a href="https://www.mysql.com/" target="_blank">
+                            MySQL
+                        </a>
+                    </div>
+                    <p>
+                        MySQL is an open source relational
+                        database management system. SQL stands
+                        for Structured Query Language
+                    </p>
+                </div>
+                <div class="box">
+                    <div class="topic">
+                        <a href="https://www.thymeleaf.org/" target="_blank">
+                            Thymeleaf
+                        </a>
+                    </div>
+                    <p>
+                        Thymeleaf is a Java XML/XHTML/HTML5
+                        template engine that can work in web
+                        and non-web environments
+                    </p>
+                </div>
+                <div class="box">
+                    <div class="topic">
+                        <a href="https://spring.io/" target="Spring Framework">
+                            Spring Framework
+                        </a>
+                    </div>
+                    <p>
+                        The Spring framework is an application
+                        framework and inversion of control
+                        container for the Java platform
+                    </p>
+                </div>
+                <div class="box">
+                    <div class="topic">
+                        <a href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/" target="_blank">
+                            Spring Data JPA
+                        </a>
+                    </div>
+                    <p>
+                        Spring Data JPA provides a framework that
+                        works with JPA and provides a complete
+                        abstraction over the Data Access Layer
+                    </p>
+                </div>
+                <div class="box">
+                    <div class="topic">
+                        <a href="https://hibernate.org" target="_blank">
+                            Hibernate
+                        </a>
+                    </div>
+                    <p>
+                        An object-relational mapping tool for the
+                        Java programming language that provides
+                        a framework for mapping an object-oriented
+                        domain model to a relational database
+                    </p>
+                </div>
+                <div class="box">
+                    <div class="topic">
+                        <a href="https://aws.amazon.com/rds/aurora/" target="_blank">
+                            Amazon Aurora
+                        </a>
+                    </div>
+                    <p>
+                        A relational database service developed and
+                        offered by Amazon Web Services beginning in
+                        October 2014
+                    </p>
+                </div>
+                <div class="box">
+                    <div class="topic">
+                        <a href="https://aws.amazon.com/secrets-manager/" target="_blank">
+                            AWS Secrets Manager
+                        </a>
+                    </div>
+                    <p>
+                        A secrets management service that helps
+                        protect access to your applications,
+                        services and IT resources
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="footer">
+            <span>
+                Created By
+                <a href="https://www.linkedin.com/in/wali-m/"
+                   target="_blank">
+                    Wali Morris - AWS Solutions Architect/Java Developer
+                </a>
+            </span>
+        </div>
+    </footer>
 </body>
 </html>

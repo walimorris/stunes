@@ -1,30 +1,28 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="stylesheet" th:href="|https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css|"/>
-    <link rel="stylesheet" href="../public/css/styles.css" th:href="@{/css/styles.css}" />
+    <link rel="stylesheet" href="../static/css/performance.css" th:href="@{/css/performance.css}" />
     <link rel="icon" href="../public/img/favicon.ico" th:href="@{/img/favicon.ico}" />
 
     <title>Performance Metrics</title>
 </head>
 
 <body>
-<ul class="nav">
-    <li class="nav-item">
-        <a class="nav-link active" href="/">Home</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link active" href="/albums">Albums Search</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link active" href="/artists">Artists Search</a>
-    </li>
-</ul>
+<nav>
+    <div class="heading">Artists</div>
+    <div class="navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/albums">Albums Search</a></li>
+            <li><a href="/artists">Artists Search</a></li>
+        </ul>
+    </div>
+</nav>
 <div class="container">
     <h2>Performance Metrics</h2>
 
@@ -32,6 +30,10 @@
     <h1>Selections:</h1>
     <p>Top Paying Customers</p>
     <form th:action="@{/performance/topfivecustomers}" method="post">
+        <button type="submit">Top 5</button>
+    </form>
+    <p>Top Performing Employees</p>
+    <form th:action="@{/performance/topfiveemployees}" method="post">
         <button type="submit">Top 5</button>
     </form>
 </div>

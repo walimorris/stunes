@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @ExtendWith(value = SpringExtension.class)
 @ContextConfiguration(classes = {SpringDataConfiguration.class})
-public class AuroraCustomerRepositoryTest {
+public class AuroraCustomerRepositoryTests {
 
     @Autowired
     AuroraCustomerRepository auroraCustomerRepository;

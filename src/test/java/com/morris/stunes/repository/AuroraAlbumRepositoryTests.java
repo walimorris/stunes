@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @ExtendWith({SpringExtension.class})
 @ContextConfiguration(classes = {SpringDataConfiguration.class})
-public class AuroraAlbumRepositoryTest {
+public class AuroraAlbumRepositoryTests {
 
     @Autowired
     AuroraAlbumRepository auroraAlbumRepository;

@@ -32,7 +32,9 @@ public class AuroraAlbumRepositoryTests {
                 () -> assertTrue(albums.size() > 0),
                 () -> assertEquals(1, albums.get(0).getArtist().getArtistId()),
                 () -> assertTrue(albums2.size() > 0),
-                () -> assertEquals(2, albums2.get(0).getArtist().getArtistId())
+                () -> assertEquals(2, albums2.get(0).getArtist().getArtistId()),
+                () -> assertTrue(albums.get(0).getImageUrl().contains("let-there-be-rock")),
+                () -> assertTrue(albums2.get(0).getImageUrl().contains("balls-to-the-wall"))
         );
     }
 

@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface AuroraAlbumRepository extends JpaRepository<Album, Integer> {
 
-    @Query( value = "SELECT AlbumId, Title, ArtistId FROM albums WHERE Title LIKE concat('%', ?1, '%') OR Title LIKE concat(?2, '%')",
+    @Query( value = "SELECT AlbumId, Title, ArtistId, Image FROM albums WHERE Title LIKE concat('%', ?1, '%') OR Title LIKE concat(?2, '%')",
             nativeQuery = true)
     List<Album> findByTitleLike(String title1, String title2);
 

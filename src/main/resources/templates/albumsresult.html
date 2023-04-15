@@ -35,13 +35,17 @@
         </div>
         <div class="card-container" th:case="false">
             <div class="card" th:each="album : ${albumsList}">
-                <img src="../static/images/album-placeholder.jpeg"
+                <img th:if="${album.imageUrl == null}" src="../static/images/album-placeholder.jpeg"
                      th:src="@{/images/album-placeholder.jpeg}"
+                     alt="album"
+                     style="width: 100%">
+                <img th:unless="${album.imageUrl == null}"
+                     th:src="${album.imageUrl}"
                      alt="album"
                      style="width: 100%">
                 <h1 th:text="${album.title}"></h1>
                 <p class="artist-name" th:text="${album.artist.name}"></p>
-                <p><button>Check out Artist</button></p>
+                <p><button>Tracks</button></p>
             </div>
         </div>
     </div>

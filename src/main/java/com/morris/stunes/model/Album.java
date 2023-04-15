@@ -26,6 +26,9 @@ public class Album {
     @Column(name = "Title")
     private String title;
 
+    @Column(name = "Image")
+    private String imageUrl;
+
     public Album() {}
 
     public Album(String title) {
@@ -54,5 +57,13 @@ public class Album {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getImageUrl() {
+        return this.imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

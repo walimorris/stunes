@@ -5,7 +5,7 @@ import com.morris.stunes.model.Employee;
 import com.morris.stunes.model.Invoice;
 import com.morris.stunes.repository.AuroraCustomerRepository;
 import com.morris.stunes.repository.AuroraEmployeeRepository;
-import com.morris.stunes.repository.AuroraInventoryRepository;
+import com.morris.stunes.repository.AuroraInvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +24,7 @@ public class PerformanceController {
     AuroraEmployeeRepository auroraEmployeeRepository;
 
     @Autowired
-    AuroraInventoryRepository auroraInventoryRepository;
+    AuroraInvoiceRepository auroraInvoiceRepository;
 
     @GetMapping("/performance")
     public String getPerformanceMetrics() {
@@ -41,7 +41,7 @@ public class PerformanceController {
     @PostMapping("/performance/topfiveemployees")
     public String getTopFiveEmployees(Model model) {
         List<Employee> topFiveEmployeesList = auroraEmployeeRepository.findByTopFiveEmployeesDescending();
-        List<Invoice> topFiveInvoicesList = auroraInventoryRepository.findBySumOfTopInvoicesByEmployeeDescending();
+        List<Invoice> topFiveInvoicesList = auroraInvoiceRepository.findBySumOfTopInvoicesByEmployeeDescending();
         model.addAttribute("topfiveemployees", topFiveEmployeesList);
         model.addAttribute("topfiveinvoices", topFiveInvoicesList);
         return "performanceresult";

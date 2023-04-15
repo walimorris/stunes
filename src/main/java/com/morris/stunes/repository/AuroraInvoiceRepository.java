@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface AuroraInventoryRepository extends JpaRepository<Invoice, Integer> {
+public interface AuroraInvoiceRepository extends JpaRepository<Invoice, Integer> {
 
     @Query(value = "SELECT i.InvoiceId, i.CustomerId,i.InvoiceDate,i.BillingAddress," +
             "i.BillyCity,i.BillingState,i.BillingCountry,i.BillingPostalCode,SUM(i.Total)" +
@@ -15,4 +15,9 @@ public interface AuroraInventoryRepository extends JpaRepository<Invoice, Intege
             "ORDER BY SUM(i.Total) DESC;",
            nativeQuery = true)
     List<Invoice> findBySumOfTopInvoicesByEmployeeDescending();
+
+    @Query(value = "SELECT InvoiceId, CustomerId, InvoiceDate, BillingAddress, BillyCity, BillingState," +
+            "BillingCountry, BillingPostalCode, Total FROM invoices ORDER BY Total DESC LIMIT 10;",
+           nativeQuery = true)
+    List<Invoice> findTopTenLargestInvoiceTotals();
 }

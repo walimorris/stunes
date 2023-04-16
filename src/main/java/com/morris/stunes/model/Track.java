@@ -1,16 +1,42 @@
 package com.morris.stunes.model;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Entity
+@Table(name = "tracks")
 public class Track {
+
+    @Id
+    @Column(name = "TrackId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int trackId;
+
+    @Column(name = "Name")
     private String name;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "AlbumId")
     private Album album;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MediaTypeId")
     private MediaType mediaType;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "GenreId")
     private Genre genre;
+
+    @Column(name = "Composer")
     private String composer;
+
+    @Column(name = "Milliseconds")
     private int milliseconds;
+
+    @Column(name = "Bytes")
     private int bytes;
+
+    @Column(name = "UnitPrice")
     private BigDecimal unitPrice;
 
     public Track() {}

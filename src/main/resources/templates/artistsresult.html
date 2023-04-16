@@ -6,53 +6,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="stylesheet" th:href="|https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css|"/>
-    <link rel="stylesheet" href="../public/css/styles.css" th:href="@{/css/styles.css}" />
+    <link rel="stylesheet" href="../static/css/artists.css" th:href="@{/css/artists.css}" />
     <link rel="icon" href="../public/img/favicon.ico" th:href="@{/img/favicon.ico}" />
 
     <title>Artists</title>
 </head>
 
 <body>
-<ul class="nav">
-    <li class="nav-item">
-        <a class="nav-link active" href="/">Home</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link active" href="/albums">Albums Search</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link active" href="/artists">Artists Search</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link active" href="/performance">Performance Metrics</a>
-    </li>
-</ul>
+<nav>
+    <div class="navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/albums">Albums Search</a></li>
+            <li><a href="/artists">Artists Search</a></li>
+            <li><a href="/performance">Performance Metrics</a></li>
+        </ul>
+    </div>
+</nav>
 <div class="container">
-    <h2>Stunes Albums</h2>
-
-    <p>Search for over 200+ Artists<p>
-    <h1>Result</h1>
-    <table th:switch="${artistsList.isEmpty()}">
-        <tr th:case="true">
-            <td class="text-center" colspan="3">Darn it... we don't have artist with a name like that!</td>
-        </tr>
-        <tr th:case="false">
-            <th>artistId</th>
-            <th>Name</th>
-            <th>action</th>
-        </tr>
-        <tr th:each="artist : ${artistsList}">
-            <td class="align-middle" th:text="${artist.artistId}"></td>
-            <td class="align-middle" th:text="${artist.name}"></td>
-            <td class="align-middle">
-                <form th:action="@{/albums/fromartist}" method="post">
-                    <input type="hidden" name="id" th:value="${artist.artistId}">
-                    <button type="submit">All Albums</button>
-                </form>
-            </td>
-        </tr>
-    </table>
+    <div th:if="${artistsList.isEmpty()}">
+        <p class="text-center">Darn it... we don't have artist with a name like that!</p>
+    </div>
+    <div class="artist-card-container">
+        <div class="artist-card" th:unless="${artistsList.isEmpty()}" th:each="artist : ${artistsList}">
+            <img src="../static/images/artist-placeholder.jpeg"
+                 th:src="@{/images/artist-placeholder.jpeg}"
+                 alt="artist"
+                 style="width: 100%">
+            <h1 th:text="Artist"></h1>
+            <p class="artist-name" th:text="${artist.name}"></p>
+            <form th:action="@{/albums/fromartist}" th:object="${artists}" method="get">
+                <input hidden="hidden" name="artistId" type="number" th:value="${artist.artistId}">
+                <input class="form-button" type="submit" value="CONTACT ME"/>
+            </form>
+        </div>
+    </div>
 </div>
 </body>
 </html>

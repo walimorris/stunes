@@ -32,8 +32,8 @@ public class AlbumsController {
         return "albumsresult";
     }
 
-    @PostMapping("/albums/fromartist")
-    public String submitAlbumQuery(Model model, @RequestParam(value = "id") int artistId) {
+    @GetMapping("/albums/fromartist")
+    public String submitAlbumQuery(Model model, @RequestParam(value = "artistId") int artistId) {
         List<Album> resultingAlbums = auroraAlbumRepository.findByArtistId(artistId);
         model.addAttribute("albumsList", resultingAlbums);
         return "albumsresult";

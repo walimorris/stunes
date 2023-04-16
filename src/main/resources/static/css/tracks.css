@@ -149,6 +149,49 @@ a {
     color: black;
 }
 
+.card-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+/* album cards */
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.50);
+    transition: box-shadow .6s;
+    max-width: 300px;
+    margin: 20px;
+    padding: 20px;
+    text-align: center;
+    flex-basis: 30%;
+    font-family: arial;
+}
+
+.card:hover {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.99);
+}
+
+.artist-name {
+    color: grey;
+    font-size: 22px;
+}
+
+.card input {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+.card input:hover {
+    opacity: 0.7;
+}
+
 /* Header content responsive */
 @media screen and (max-width: 980px) {
     .side2 img {
@@ -180,98 +223,4 @@ a {
     .line .side1 {
         padding: 30px;
     }
-}
-
-/* search bars */
-
-.search {
-    width: 100%;
-    position: relative;
-    display: flex;
-}
-
-.wrap form {
-    width: 100%;
-    position: relative;
-    display: flex;
-}
-
-.searchTerm {
-    width: 100%;
-    border: 3px solid #00B4CC;
-    border-right: none;
-    padding: 15px;
-    height: 20px;
-    border-radius: 5px 0 0 5px;
-    outline: none;
-    color: #9DBFAF;
-}
-
-.searchTerm:focus{
-    color: #00B4CC;
-}
-
-.searchButton {
-    width: 40px;
-    height: 36px;
-    border: 1px solid #00B4CC;
-    background: #00B4CC;
-    text-align: center;
-    color: #fff;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-    font-size: 20px;
-}
-
-/*Resize the wrap to see the search bar change!*/
-.wrap{
-    width: 30%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-/* artist card */
-.artist-card-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-/* album cards */
-.artist-card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.50);
-    transition: box-shadow .6s;
-    max-width: 300px;
-    margin: 20px;
-    padding: 20px;
-    text-align: center;
-    flex-basis: 30%;
-    font-family: arial;
-}
-
-.artist-card:hover {
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.99);
-}
-
-.artist-name {
-    color: grey;
-    font-size: 22px;
-}
-
-.artist-card input {
-    border: none;
-    outline: 0;
-    padding: 12px;
-    color: white;
-    background-color: #000;
-    text-align: center;
-    cursor: pointer;
-    width: 100%;
-    font-size: 18px;
-}
-
-.artist-card input:hover {
-    opacity: 0.7;
 }

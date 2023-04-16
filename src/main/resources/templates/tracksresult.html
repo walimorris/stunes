@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-      xmlns="http://www.w3.org/1999/html" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="en">
 
 <head>
     <meta charset="utf-8" />
@@ -11,7 +10,7 @@
     <link rel="stylesheet" href="../static/css/albums.css" th:href="@{/css/albums.css}" />
     <link rel="icon" href="../public/img/favicon.ico" th:href="@{/img/favicon.ico}" />
 
-    <title>Albums</title>
+    <title>Tracks</title>
 </head>
 
 <body>
@@ -26,26 +25,20 @@
     </div>
 </nav>
 <div class="container">
-    <div th:switch="${albumsList.isEmpty()}">
+    <h2>Tracks</h2>
+    <div th:switch="${tracks.isEmpty()}">
         <div th:case="true">
-            <p>Darn it... we don't have an album like that!</p>
+            <p>Darn it... no tracks on stock for this album</p>
         </div>
         <div class="card-container" th:case="false">
-            <div class="card" th:each="album : ${albumsList}">
-                <img th:if="${album.imageUrl == null}" src="../static/images/album-placeholder.jpeg"
+            <div class="card" th:each="track : ${tracks}">
+                <img src="../static/images/album-placeholder.jpeg"
                      th:src="@{/images/album-placeholder.jpeg}"
-                     alt="album"
+                     alt="track"
                      style="width: 100%">
-                <img th:unless="${album.imageUrl == null}"
-                     th:src="${album.imageUrl}"
-                     alt="album"
-                     style="width: 100%">
-                <h1 th:text="${album.title}"></h1>
-                <p class="artist-name" th:text="${album.artist.name}"></p>
-                <form th:action="@{/tracks}" th:object="${tracks}" method="get">
-                    <input hidden="hidden" name="albumId" type="number" th:value="${album.albumId}">
-                    <input type="submit" value="Tracks" />
-                </form>
+                <h1 th:text="${track.name}"></h1>
+                <p th:text="${track.composer} + ' - ' + ${track.genre.name}"></p>
+                <p class="artist-name" th:text="'$' + ${track.unitPrice}"></p>
             </div>
         </div>
     </div>

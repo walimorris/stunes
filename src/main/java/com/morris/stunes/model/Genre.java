@@ -1,7 +1,22 @@
 package com.morris.stunes.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
+@Entity
+@Table(name = "genres")
 public class Genre {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "GenreId")
     private int genreId;
+
+    @Column(name = "Name")
     private String name;
 
     public Genre() {}

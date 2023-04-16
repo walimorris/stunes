@@ -12,7 +12,7 @@ public interface AuroraAlbumRepository extends JpaRepository<Album, Integer> {
             nativeQuery = true)
     List<Album> findByTitleLike(String title1, String title2);
 
-    @Query(value = "SELECT AlbumId, Title, ArtistId FROM albums WHERE ArtistId = ?1",
+    @Query(value = "SELECT AlbumId, Title, ArtistId, Image FROM albums WHERE ArtistId = ?1",
            nativeQuery = true)
     List<Album> findByArtistId(int artistId);
 }

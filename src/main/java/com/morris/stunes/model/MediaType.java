@@ -1,7 +1,22 @@
 package com.morris.stunes.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
+@Entity
+@Table(name = "media_types")
 public class MediaType {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "MediaTypeId")
     private int mediaTypeId;
+
+    @Column(name = "Name")
     private String name;
 
     public MediaType() {}

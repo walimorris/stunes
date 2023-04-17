@@ -50,5 +50,10 @@
         </div>
     </div>
 </div>
+<div class="pagination-container" th:unless="${albumspages == 0}">
+    <div class="pagination" th:each="page : ${albumspages}">
+        <a th:href="'/albums/published?title=' + ${searchterm} + '&page=' + ${page} + '&size=12'" th:text="${page}"></a>
+    </div>
+</div>
 </body>
 </html>

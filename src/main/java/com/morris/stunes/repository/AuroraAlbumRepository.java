@@ -22,7 +22,6 @@ public interface AuroraAlbumRepository extends JpaRepository<Album, Integer> {
            nativeQuery = true)
     List<Album> findByArtistId(int artistId);
 
-    @Query(value = "SELECT AlbumId, Title, ArtistId, Image FROM albums WHERE ArtistId = ?1",
-            nativeQuery = true)
-    List<Album> findByArtistId(int artistId, Pageable pageable);
+    @Query("SELECT a.albumId, a.title, a.artist, a.imageUrl FROM Album a WHERE a.albumId = :artistId")
+    Page<Album> findByArtistId(@Param("artistId") int artistId, Pageable pageable);
 }

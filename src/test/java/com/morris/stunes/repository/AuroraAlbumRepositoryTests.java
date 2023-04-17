@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -48,6 +51,33 @@ public class AuroraAlbumRepositoryTests {
                 () -> assertEquals(2, albums.size()),
                 () -> assertEquals("Balls to the Wall", albums.get(0).getTitle()),
                 () -> assertEquals("Restless and Wild", albums.get(1).getTitle())
+        );
+    }
+
+    @Test
+    public void findByArtistIdPageable() {
+        int artistId = 2;
+        Pageable pageableProperties = PageRequest.of(0, 12);
+        Page<Album> artistByIdPageableList = auroraAlbumRepository.findByArtistId(artistId, pageableProperties);
+        List<Album> artistByIdList = artistByIdPageableList.getContent();
+
+        assertAll(
+                () -> assertEquals(1, artistByIdPageableList.getTotalPages()),
+                () -> assertEquals(1, artistByIdPageableList.getTotalElements())
+        );
+    }
+
+    @Test
+    public void findByTitleIsLikeIgnoreCaseTest() {
+        String queryString = "live";
+        Pageable pagingProperties = PageRequest.of(0, 12);
+        Page<Album> titleLikePageableList = auroraAlbumRepository.findByTitleIsLikeIgnoreCase(queryString, pagingProperties);
+        List<Album> titleLikeList = titleLikePageableList.getContent();
+
+        assertAll(
+                () -> assertEquals(2, titleLikePageableList.getTotalPages()),
+                () -> assertEquals(17, titleLikePageableList.getTotalElements()),
+                () -> assertInstanceOf(Album.class, titleLikeList.get(0))
         );
     }
 }

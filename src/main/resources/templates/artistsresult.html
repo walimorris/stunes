@@ -35,7 +35,7 @@
                  style="width: 100%">
             <h1 th:text="Artist"></h1>
             <p class="artist-name" th:text="${artist.name}"></p>
-            <form th:action="@{/albums/fromartist}" th:object="${artists}" method="get">
+            <form th:action="@{/albums/artist}" th:object="${artists}" method="get">
                 <input hidden="hidden" name="artistId" type="number" th:value="${artist.artistId}">
                 <input class="form-button" type="submit" value="CONTACT ME"/>
             </form>

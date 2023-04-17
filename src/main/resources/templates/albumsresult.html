@@ -52,7 +52,8 @@
 </div>
 <div class="pagination-container" th:unless="${albumspages == 0}">
     <div class="pagination" th:each="page : ${albumspages}">
-        <a th:href="'/albums/published?title=' + ${searchterm} + '&page=' + ${page} + '&size=12'" th:text="${page}"></a>
+        <a th:href="'/albums/' + ${path} + '?' + ${searchterm} + '=' + ${searchValue} + '&page=' + ${page} + '&size=12'"
+           th:text="${page + 1}"></a>
     </div>
 </div>
 </body>

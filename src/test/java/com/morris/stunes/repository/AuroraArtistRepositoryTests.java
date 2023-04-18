@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -52,5 +55,35 @@ public class AuroraArtistRepositoryTests {
         String name = "Drake";
         List<Artist> artists = auroraArtistRepository.findByNameLike(name, name);
         assertTrue(artists.size() > 1);
+    }
+
+    @Test
+    void testFindByNameIsLikeIgnoreCase() {
+        String testQuery1 = "Ae";
+        String testQuery2 = "ae";
+
+        Pageable pageableRequest = PageRequest.of(0, 12);
+        Page<Artist> artist1ResultsPageable = auroraArtistRepository.findByNameIsLikeIgnoreCase(testQuery1, pageableRequest);
+        Page<Artist> artist2RequestPageable = auroraArtistRepository.findByNameIsLikeIgnoreCase(testQuery2, pageableRequest);
+
+        assertAll(
+                () -> assertEquals(artist1ResultsPageable.getTotalPages(), artist2RequestPageable.getTotalPages()),
+                () -> assertEquals(artist1ResultsPageable.getTotalElements(), artist2RequestPageable.getTotalElements())
+        );
+
+        List<Artist> results1 = artist1ResultsPageable.getContent();
+        List<Artist> results2 = artist2RequestPageable.getContent();
+
+        assertEquals(results1.size(), results2.size());
+        for (int i = 0; i < results1.size(); i++) {
+            Artist artist1 = results1.get(i);
+            Artist artist2 = results2.get(i);
+
+            assertAll(
+                    () -> assertEquals(artist1.getClass(), artist2.getClass()),
+                    () -> assertEquals(artist1.getArtistId(), artist2.getArtistId()),
+                    () -> assertEquals(artist1.getName(), artist2.getName())
+            );
+        }
     }
 }

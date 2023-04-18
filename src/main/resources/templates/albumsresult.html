@@ -36,7 +36,7 @@
                      th:src="@{/images/album-placeholder.jpeg}"
                      alt="album"
                      style="width: 100%">
-                <img th:unless="${album.imageUrl == null}"
+                <img th:unless="${album.getImageUrl() == null}"
                      th:src="${album.imageUrl}"
                      alt="album"
                      style="width: 100%">

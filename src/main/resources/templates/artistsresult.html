@@ -42,5 +42,11 @@
         </div>
     </div>
 </div>
+<div class="pagination-container" th:unless="${artistspages == 0}">
+    <div class="pagination" th:each="page : ${artistspages}">
+        <a th:href="'/artists/' + ${path} + '?' + ${searchterm} + '=' + ${searchValue} + '&page=' + ${page} + '&size=12'"
+           th:text="${page + 1}"></a>
+    </div>
+</div>
 </body>
 </html>

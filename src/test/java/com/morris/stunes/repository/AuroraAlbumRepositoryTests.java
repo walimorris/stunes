@@ -58,12 +58,13 @@ public class AuroraAlbumRepositoryTests {
     public void findByArtistIdPageable() {
         int artistId = 2;
         Pageable pageableProperties = PageRequest.of(0, 12);
-        Page<Album> artistByIdPageableList = auroraAlbumRepository.findByArtistId(artistId, pageableProperties);
+        Page<Album> artistByIdPageableList = auroraAlbumRepository.findByArtistIdPageable(artistId, pageableProperties);
         List<Album> artistByIdList = artistByIdPageableList.getContent();
 
         assertAll(
                 () -> assertEquals(1, artistByIdPageableList.getTotalPages()),
-                () -> assertEquals(1, artistByIdPageableList.getTotalElements())
+                () -> assertEquals(1, artistByIdPageableList.getTotalElements()),
+                () -> assertInstanceOf(Album.class, artistByIdList.get(0))
         );
     }
 

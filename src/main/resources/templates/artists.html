@@ -25,7 +25,7 @@
 </nav>
 <div class="container">
     <div class="wrap">
-        <form th:action="@{/artists}" th:object="${artists}" method="post">
+        <form th:action="@{/artists/published}" th:object="${artists}" method="get">
             <input class="searchTerm"
                    placeholder="What artist are you looking for?"
                    type="text" th:field="*{name}"/>

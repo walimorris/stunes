@@ -49,12 +49,13 @@ public class AlbumsController {
     }
 
     @GetMapping("/albums/artist")
-    public String submitAlbumQuery(Model model, @RequestParam(value = "artistId") int artistId,
+    public String submitAlbumQuery(@ModelAttribute Album albums, Model model,
+                                   @RequestParam(value = "artistId") int artistId,
                                    @RequestParam(defaultValue = "0") int page,
                                    @RequestParam(defaultValue = "12") int size) {
 
         Pageable paging = PageRequest.of(page, size);
-        Page<Album> resultingPageableAlbums = auroraAlbumRepository.findByArtistId(artistId, paging);
+        Page<Album> resultingPageableAlbums = auroraAlbumRepository.findByArtistIdPageable(artistId, paging);
         List<Integer> numberOfPagesList = pageableService.getPagesList(resultingPageableAlbums);
 
         List<Album> resultingAlbums = resultingPageableAlbums.getContent();

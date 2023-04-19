@@ -40,8 +40,9 @@ public class ArtistsController {
                 pageableConfig);
 
         List<Artist> artistList = artistsLikeList.getContent();
-        List<Integer> numberOfPagesList = pageableService.getPagesList(artistsLikeList);
+        List<Integer> numberOfPagesList = pageableService.getPagesList(artistsLikeList, page);
 
+        model.addAttribute("pagestart", page);
         model.addAttribute("artistsList", artistList);
         model.addAttribute("artistspages", numberOfPagesList);
         model.addAttribute("path", "published");

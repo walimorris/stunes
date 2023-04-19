@@ -37,9 +37,10 @@ public class AlbumsController {
 
         Pageable paging = PageRequest.of(page, size);
         Page<Album> resultingPageableAlbums = auroraAlbumRepository.findByTitleIsLikeIgnoreCase(albums.getTitle(), paging);
-        List<Integer> numberOfPagesList = pageableService.getPagesList(resultingPageableAlbums);
+        List<Integer> numberOfPagesList = pageableService.getPagesList(resultingPageableAlbums, page);
 
         List<Album> resultingAlbums = resultingPageableAlbums.getContent();
+        model.addAttribute("pagestart", page);
         model.addAttribute("albumsList", resultingAlbums);
         model.addAttribute("albumspages", numberOfPagesList);
         model.addAttribute("path", "published");
@@ -56,9 +57,10 @@ public class AlbumsController {
 
         Pageable paging = PageRequest.of(page, size);
         Page<Album> resultingPageableAlbums = auroraAlbumRepository.findByArtistIdPageable(artistId, paging);
-        List<Integer> numberOfPagesList = pageableService.getPagesList(resultingPageableAlbums);
-
+        List<Integer> numberOfPagesList = pageableService.getPagesList(resultingPageableAlbums, page);
         List<Album> resultingAlbums = resultingPageableAlbums.getContent();
+
+        model.addAttribute("pagestart", page);
         model.addAttribute("albumsList", resultingAlbums);
         model.addAttribute("albumspages", numberOfPagesList);
         model.addAttribute("path", "artist");

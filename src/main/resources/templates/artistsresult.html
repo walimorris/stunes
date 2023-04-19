@@ -43,9 +43,13 @@
     </div>
 </div>
 <div class="pagination-container" th:unless="${artistspages == 0}">
-    <div class="pagination" th:each="page : ${artistspages}">
-        <a th:href="'/artists/' + ${path} + '?' + ${searchterm} + '=' + ${searchValue} + '&page=' + ${page} + '&size=12'"
-           th:text="${page + 1}"></a>
+    <div class="pagination-container" th:unless="${artistspages == 0}">
+        <div class="pagination" th:each="page, iStat : ${artistspages}">
+            <a th:if="${iStat.current} != 0 and ${iStat.index} == 0" th:href="'/artists/' + ${path} + '?' + ${searchterm} + '=' + ${searchValue} + '&page=' + ${page - 1} + '&size=12'">&laquo;</a>
+            <a th:if="${iStat.count} < 11" th:href="'/artists/' + ${path} + '?' + ${searchterm} + '=' + ${searchValue} + '&page=' + ${page} + '&size=12'"
+               th:text="${page + 1}"></a>
+            <a th:if="${iStat.count} == 10" th:href="'/artists/' + ${path} + '?' + ${searchterm} + '=' + ${searchValue} + '&page=' + ${page + 1} + '&size=12'">&raquo;</a>
+        </div>
     </div>
 </div>
 </body>

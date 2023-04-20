@@ -54,10 +54,11 @@
 <div class="pagination-container" th:unless="${albumspages == 0}">
     <div class="pagination" th:each="page, iStat : ${albumspages}">
         <a th:if="${iStat.current} != 0 and ${iStat.index} == 0" th:href="'/albums/' + ${path} + '?' + ${searchterm} + '=' + ${searchValue} + '&page=' + ${page - 1} + '&size=12'">&laquo;</a>
-        <a th:if="${iStat.count} < 11" th:href="'/albums/' + ${path} + '?' + ${searchterm} + '=' + ${searchValue} + '&page=' + ${page} + '&size=12'"
+        <a th:id="'link-' + ${page}" th:if="${iStat.count} < 11" th:href="'/albums/' + ${path} + '?' + ${searchterm} + '=' + ${searchValue} + '&page=' + ${page} + '&size=12'"
            th:text="${page + 1}"></a>
         <a th:if="${iStat.count} == 10" th:href="'/albums/' + ${path} + '?' + ${searchterm} + '=' + ${searchValue} + '&page=' + ${page + 1} + '&size=12'">&raquo;</a>
     </div>
 </div>
+<script type="text/javascript" th:src="@{/js/pagination-actions.js}"></script>
 </body>
 </html>

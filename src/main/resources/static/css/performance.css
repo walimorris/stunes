@@ -12,51 +12,32 @@ body {
 
 nav {
     width: 100%;
-    height: 80px;
+    height: 125px;
     display: flex;
     justify-content: space-between;
     padding: 20px 5%;
     background-color: #1E1C1C;
+    overflow: auto;
 }
 
-nav .heading {
-    font-size: 30px;
-    font-weight: 700;
-    color: white;
+.navbar {
+    flex:1 1 200px;
 }
 
-nav ul {
-    display: flex;
-    list-style: none;
-}
-
-nav ul li {
-    padding: 8px 15px;
-    border-radius: 10px;
-    transition: 0.2s ease-in;
-}
-
-nav ul li a {
-    color: black;
-    font-size: 20px;
-    font-weight: 500;
+.navbar a {
+    display: inline-block;
+    text-align: center;
+    padding-right: 14px;
+    padding-left: 50px;
+    font-size: 18px;
     text-decoration: none;
-    color: white;
+    margin-top: 25px;
+    color: rgba(255,255,255,0.7);
 }
 
-nav ul li:hover {
-    background-color: #743089;
-}
-
-nav ul li a:hover {
-    color: white;
-}
-
-nav .sideMenuButton {
-    font-size: 30px;
-    font-weight: bolder;
-    cursor: pointer;
-    display: none;
+.navbar a:hover {
+    color: #fefefe;
+    text-decoration: none;
 }
 
 /* responsive navbar css */
@@ -74,47 +55,8 @@ nav .sideMenuButton {
     }
 }
 
-.sideNavigationBar {
-    height: 100%;
-    position: fixed;
-    top: 0;
-    right: 0%;
-    background-color: green;
-    overflow-x: hidden;
-    transition: 0.3s ease-in;
-    padding-top: 60px;
-    display: none;
-}
-
-.sideNavigationBar a {
-    padding: 8px 8px 8px 40px;
-    display: block;
-    font-size: 25px;
-    font-weight: 500;
-    color: #d1d1d1;
-    transition: 0.3s;
-    text-decoration: none;
-}
-
-.sideNavigationBar a button {
-    padding: 10px 20px;
-    border-radius: 10px;
-    color: green;
-    font-size: 16px;
-    border-style: none;
-    font-weight: 700;
-}
-
-.sideNavigationBar a:hover {
-    color: white;
-}
-
-.sideNavigationBar .closeButton {
-    position: absolute;
-    top: 10px;
-    right: 25px;
-    font-size: 20px;
-    margin-left: 50px;
+.logo-img {
+    border: 1px solid white;
 }
 
 .line {

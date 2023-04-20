@@ -16,7 +16,7 @@ nav {
     display: flex;
     justify-content: space-between;
     padding: 20px 5%;
-    background-color: #267CFC;
+    background-color: #1E1C1C;
 }
 
 nav .heading {
@@ -45,7 +45,7 @@ nav ul li a {
 }
 
 nav ul li:hover {
-    background-color: #2424F2;
+    background-color: #743089;
 }
 
 nav ul li a:hover {
@@ -198,7 +198,7 @@ a {
 
 .searchTerm {
     width: 100%;
-    border: 3px solid #00B4CC;
+    border: 3px solid #743089;
     border-right: none;
     padding: 15px;
     height: 20px;
@@ -208,14 +208,14 @@ a {
 }
 
 .searchTerm:focus{
-    color: #00B4CC;
+    color: #1E1C1C;
 }
 
 .searchButton {
     width: 40px;
     height: 36px;
-    border: 1px solid #00B4CC;
-    background: #00B4CC;
+    border: 1px solid #743089;
+    background: #743089;
     text-align: center;
     color: #fff;
     border-radius: 0 5px 5px 0;

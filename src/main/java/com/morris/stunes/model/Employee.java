@@ -59,6 +59,9 @@ public class Employee {
     @Column(name = "Email")
     private String email;
 
+    @Column(name = "Image")
+    private String image;
+
     public Employee() {}
 
     public Employee(int employeeId) {
@@ -183,5 +186,13 @@ public class Employee {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getImage() {
+        return this.image;
+    }
+
+    public void setImage(String imageUrl) {
+        this.image = imageUrl;
     }
 }

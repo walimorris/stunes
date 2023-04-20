@@ -6,28 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="stylesheet" th:href="|https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css|"/>
-    <link rel="stylesheet" href="../public/css/styles.css" th:href="@{/css/styles.css}" />
+    <link rel="stylesheet" href="../static/css/performance.css" th:href="@{/css/performance.css}" />
     <link rel="icon" href="../public/img/favicon.ico" th:href="@{/img/favicon.ico}" />
 
     <title>Top 5 Customers</title>
 </head>
 
 <body>
-<ul class="nav">
-    <li class="nav-item">
-        <a class="nav-link active" href="/">Home</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link active" href="/albums">Albums Search</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link active" href="/artists">Artists Search</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link active" href="/performance">Performance Metrics</a>
-    </li>
-</ul>
+<nav>
+    <div class="navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/albums">Albums Search</a></li>
+            <li><a href="/artists">Artists Search</a></li>
+            <li><a href="/performance">Performance Metrics</a></li>
+        </ul>
+    </div>
+</nav>
 <div class="container">
     <th:block th:if="${topfivecustomers != null}">
         <h2>Top 5 Customers</h2>
@@ -67,56 +62,31 @@
                 <td class="align-middle" th:text="${customer.fax}"></td>
                 <td class="align-middle" th:text="${customer.email}"></td>
                 <td class="align-middle" th:text="${customer.employeeSupportRep.employeeId}"></td>
-            </tr>
-        </table>
-    </th:block>
-    <th:block th:if="${topfiveemployees != null}">
-        <h2>Top 5 Employees</h2>
 
-        <p>Review Top 5 Employees<p>
-        <h1>Result</h1>
-        <table th:switch="${topfiveemployees.isEmpty()}">
-            <tr th:case="true">
-                <td class="text-center" colspan="3">Darn it... employees is lacking!</td>
-            </tr>
-            <tr th:case="false">
-                <th>employeeId</th>
-                <th>first name</th>
-                <th>last name</th>
-                <th>title</th>
-                <th>reports to</th>
-                <th>birth date</th>
-                <th>hire date</th>
-                <th>address</th>
-                <th>city</th>
-                <th>state</th>
-                <th>country</th>
-                <th>postal code</th>
-                <th>phone</th>
-                <th>fax</th>
-                <th>email</th>
-                <th>total</th>
-            </tr>
-            <tr th:each="employee, i : ${topfiveemployees}">
-                <td class="align-middle" th:text="${employee.employeeId}"></td>
-                <td class="align-middle" th:text="${employee.firstName}"></td>
-                <td class="align-middle" th:text="${employee.lastName}"></td>
-                <td class="align-middle" th:text="${employee.title}"></td>
-                <td class="align-middle" th:text="${employee.reportsTo}"></td>
-                <td class="align-middle" th:text="${employee.birthdate}"></td>
-                <td class="align-middle" th:text="${employee.hireDate}"></td>
-                <td class="align-middle" th:text="${employee.address}"></td>
-                <td class="align-middle" th:text="${employee.city}"></td>
-                <td class="align-middle" th:text="${employee.state}"></td>
-                <td class="align-middle" th:text="${employee.country}"></td>
-                <td class="align-middle" th:text="${employee.postalCode}"></td>
-                <td class="align-middle" th:text="${employee.phone}"></td>
-                <td class="align-middle" th:text="${employee.fax}"></td>
-                <td class="align-middle" th:text="${employee.email}"></td>
-                <td class="align-middle" th:text="${topfiveinvoices[i.index].total}"></td>
             </tr>
         </table>
     </th:block>
+    <div th:if="${topfiveemployees != null}">
+        <div th:switch="${topfiveemployees.isEmpty()}">
+            <div th:case="true">
+                <p>Darn it... employees is lacking!</p>
+            </div>
+            <div class="employee-container">
+                <div id="slideSet" class="paused">
+                    <div class="paused" th:id="'slide-' + ${i.count}" th:each="employee, i : ${topfiveemployees}">
+                        <h1 th:text="${employee.firstName} + ' ' + ${employee.lastName}"></h1>
+                        <h2 th:text="${employee.title}"></h2>
+                        <h2 th:text="'Reports to ' + ${employee.reportsTo}"></h2>
+                        <h2 th:text="${employee.email}"></h2>
+                        <p th:text="${topfiveinvoices[i.index].total}"></p>
+                        <img alt="employee-image" src="" th:src="${employee.image}">
+                    </div>
+                </div>
+                <button id="toggle">Toggle</button>
+            </div>
+        </div>
+    </div>
 </div>
+<script type="text/javascript" th:src="@{/js/employee-slide-component.js}"></script>
 </body>
 </html>

@@ -16,7 +16,7 @@ nav {
     display: flex;
     justify-content: space-between;
     padding: 20px 5%;
-    background-color: #267CFC;
+    background-color: #1E1C1C;
 }
 
 nav .heading {
@@ -45,7 +45,7 @@ nav ul li a {
 }
 
 nav ul li:hover {
-    background-color: #2424F2;
+    background-color: #743089;
 }
 
 nav ul li a:hover {

@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <link rel="stylesheet" href="../static/css/performance.css" th:href="@{/css/performance.css}" />
     <link rel="icon" href="../public/img/favicon.ico" th:href="@{/img/favicon.ico}" />
 
@@ -81,7 +82,11 @@
                         <img alt="employee-image" src="" th:src="${employee.image}">
                     </div>
                 </div>
-                <button id="toggle">Toggle</button>
+                <div class="dot-container">
+                    <div id="dot-1" class="dot"></div>
+                    <div id="dot-2" class="dot"></div>
+                    <div id="dot-3" class="dot"></div>
+                </div>
             </div>
         </div>
     </div>

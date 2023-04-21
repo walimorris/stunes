@@ -13,6 +13,10 @@ $(document).ready(function () {
     // event listeners on next & prev buttons
     $('#prev-button').on('click', function () {updateSlide(slide - 1);}); // user clicks prev, subtract 1
     $('#next-button').on('click', function () {updateSlide(slide + 1);}); // user clicks next, add 1
+
+    // event listeners on employee slide component
+    $('#slideSet').on('mouseenter', function () {showNavigationButtons()});
+    $('#slideSet').on('mouseleave', function (){hideNavigationButtons()});
 });
 
 /**
@@ -31,8 +35,9 @@ function slideshow() {
 
 /**
  * Updates the slide element's and respective slide dot element's visibility
- * attribute based on the supplied slide
- * @param n
+ * attribute based on the supplied slide.
+ *
+ * @param n slide number to navigate to
  */
 function updateSlide(n) {
     slide = n;
@@ -67,4 +72,27 @@ function updateSlide(n) {
             $('#dot-2').css('background-color', '#ddd');
             $('#dot-3').css('background-color', '#743089');
     }
+}
+
+/**
+ * Hide navigation buttons by changing visibility property and fadeOut
+ * animation property keyframes.
+ */
+function hideNavigationButtons() {
+    $('#prev-button').css('visibility', 'hidden');
+    $('#next-button').css('visibility', 'hidden');
+    $('#prev-button').css('animation', '1s fadeOut');
+    $('#next-button').css('animation', '1s fadeOut');
+
+}
+
+/**
+ * Show navigation buttons by changing visibility property and fadeIn
+ * animation property keyframes.
+ */
+function showNavigationButtons() {
+    $('#prev-button').css('visibility', 'visible');
+    $('#next-button').css('visibility', 'visible');
+    $('#prev-button').css('animation', '1s fadeIn');
+    $('#next-button').css('animation', '1s fadeIn');
 }

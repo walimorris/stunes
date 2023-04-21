@@ -127,6 +127,8 @@ a {
 #slideSet {
     height: 30em;
     position: relative;
+    background: url("../images/images4.jpg") no-repeat;
+    background-size: 100%;
 }
 
 #slideSet > * {
@@ -135,6 +137,7 @@ a {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    color: white;
 }
 
 #slide-1 {
@@ -151,6 +154,7 @@ a {
 
 .dot-container {
     text-align: center;
+    margin-top: 20px;
 }
 
 .dot {
@@ -168,13 +172,17 @@ a {
 
 #prev-button {
     position: relative;
+    visibility: hidden;
+    animation-fill-mode: forwards;
     margin: auto;
     transform: none;
     left: 0;
 }
 
 #next-button {
+    visibility: hidden;
     position: relative;
+    animation-fill-mode: forwards;
     margin-right: 50%;
     margin-top: 1.2%;
     float: right;
@@ -192,6 +200,37 @@ a {
     font-weight: lighter;
 }
 
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        visibility: hidden;
+        opacity: 1;
+    }
+}
+
 #slideSet button:hover {
     cursor: pointer;
+}
+
+.title {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 80px;
+    font-family: theSansItalic,Arial,Helvetica,sans-serif !important;
+    font-size: 33px !important;
+    text-align: center !important;
+    color: #1e1e1e !important;
+    font-weight: normal !important;
 }

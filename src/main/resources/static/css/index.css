@@ -181,6 +181,27 @@ section .topic a {
     font-weight: normal !important;
 }
 
+.title a {
+    text-decoration: none;
+    box-shadow: 0 2px 2px -2px #743089;
+    padding-bottom: 4px;
+}
+
+.title a:hover {
+    text-decoration: none;
+    box-shadow: none;
+}
+
+.topic a {
+    text-decoration: none;
+    box-shadow: 0 2px 2px -2px #743089;
+}
+
+.topic a:hover {
+    text-decoration: none;
+    box-shadow: none;
+}
+
 .contactMenu {
     display: flex;
     justify-content: space-evenly;

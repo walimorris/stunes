@@ -13,7 +13,7 @@ public interface AuroraArtistRepository extends JpaRepository<Artist, Integer> {
 
     Artist findByName(String name);
 
-    @Query( value = "SELECT ArtistId, Name FROM artists WHERE Name LIKE concat('%', ?1, '%') OR Name LIKE concat(?2, '%')",
+    @Query( value = "SELECT ArtistId, Name, Image FROM artists WHERE Name LIKE concat('%', ?1, '%') OR Name LIKE concat(?2, '%')",
             nativeQuery = true)
     List<Artist> findByNameLike(String name1, String name2);
 

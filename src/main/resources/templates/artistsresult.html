@@ -31,11 +31,14 @@
     </div>
     <div class="artist-card-container">
         <div class="artist-card" th:unless="${artistsList.isEmpty()}" th:each="artist : ${artistsList}">
-            <img src="../static/images/artist-placeholder.jpeg"
+            <img th:if="${artist.imageUrl} == null" src="../static/images/artist-placeholder.jpeg"
                  th:src="@{/images/artist-placeholder.jpeg}"
                  alt="artist"
                  style="width: 100%">
-            <h1 th:text="Artist"></h1>
+            <img th:unless="${artist.getImageUrl() == null}"
+                 th:src="${artist.imageUrl}"
+                 alt="artist"
+                 style="width: 100%">
             <p class="artist-name" th:text="${artist.name}"></p>
             <form th:action="@{/albums/artist}" th:object="${artists}" method="get">
                 <input hidden="hidden" name="artistId" type="number" th:value="${artist.artistId}">

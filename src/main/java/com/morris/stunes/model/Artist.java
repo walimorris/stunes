@@ -19,6 +19,9 @@ public class Artist {
     @Column(name = "Name")
     private String name;
 
+    @Column(name = "Image")
+    private String image;
+
     public Artist() {}
 
     public Artist(String name) {
@@ -39,6 +42,14 @@ public class Artist {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getImageUrl() {
+        return this.image;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.image = imageUrl;
     }
 
     @Override

@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <link rel="stylesheet" th:href="|https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css|"/>
     <link rel="stylesheet" href="../static/css/albums.css" th:href="@{/css/albums.css}" />
     <link rel="icon" href="../public/img/favicon.ico" th:href="@{/img/favicon.ico}" />
@@ -35,7 +36,30 @@
             </button>
         </form>
     </div>
+    <button id="prev-button" th:text="'<'"></button>
+    <div class="most-popular-slide-show">
+<!--        <div class="box" style="margin-left: 75px;">-->
+<!--            <img src="../static/images/album-placeholder.jpeg" alt="track" th:src="@{/images/album-placeholder.jpeg}">-->
+<!--            <h1>Some Text Here</h1>-->
+<!--            <p>Some more random text here in the box</p>-->
+<!--            <a href="#">Learn More ></a>-->
+<!--        </div>-->
+<!--        <div class="box">-->
+<!--            <img src="../static/images/album-placeholder.jpeg" alt="track" th:src="@{/images/album-placeholder.jpeg}">-->
+<!--            <h1>Some Text Here</h1>-->
+<!--            <p>Some more random text here in the box</p>-->
+<!--            <a href="#">Learn More ></a>-->
+<!--        </div>-->
+<!--        <div class="box">-->
+<!--            <img src="../static/images/album-placeholder.jpeg" alt="track" th:src="@{/images/album-placeholder.jpeg}">-->
+<!--            <h1>Some Text Here</h1>-->
+<!--            <p>Some more random text here in the box</p>-->
+<!--            <a href="#">Learn More ></a>-->
+<!--        </div>-->
+    </div>
+    <button id="next-button" th:text="'>'"></button>
 </div>
+<script type="text/javascript" th:src="@{/js/most-popular-tracks.js}"></script>
 <script th:src="'https:' + '//kit.fontawesome.com/d10979be3a.js'" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -61,4 +61,12 @@ public class AuroraTrackRepositoryTests {
             );
         }
     }
+
+    @Test
+    public void findMostPopularTracksTest() {
+        List<Track> mostPopularTracks = auroraTrackRepository.findMostPopularTracks();
+
+        assertAll(
+                () -> assertEquals(10, mostPopularTracks.size()));
+    }
 }

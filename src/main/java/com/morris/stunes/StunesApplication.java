@@ -7,7 +7,6 @@ import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
 @PropertySource("classpath:secrets.properties")
-@Configuration
 public class StunesApplication {
 
 	public static void main(String[] args) {

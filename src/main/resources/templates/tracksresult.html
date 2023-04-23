@@ -31,8 +31,12 @@
         </div>
         <div class="card-container" th:case="false">
             <div class="card" th:each="track : ${tracks}">
-                <img src="../static/images/album-placeholder.jpeg"
+                <img th:if="${track.album.imageUrl == null}" src="../static/images/album-placeholder.jpeg"
                      th:src="@{/images/album-placeholder.jpeg}"
+                     alt="album"
+                     style="width: 100%">
+                <img th:unless="${track.album.imageUrl == null}"
+                     th:src="${track.album.imageUrl}"
                      alt="track"
                      style="width: 100%">
                 <h1 th:text="${track.name}"></h1>

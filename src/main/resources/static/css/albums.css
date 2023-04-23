@@ -215,7 +215,7 @@ a {
 .wrap{
     width: 30%;
     position: absolute;
-    top: 25%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -243,7 +243,7 @@ a {
 .pagination a:hover:not(.active) {background-color: #ddd;}
 
 .most-popular-slide-show {
-
+    width: 100%;
 }
 
 .most-popular-slide-show img {
@@ -270,8 +270,10 @@ a {
     width: 305px;
     height: 370px;
     margin-top: 35%;
-    margin-right: 15px;
+    margin-left: 15px;
+    margin-bottom: 40px;
     display: inline-block;
+    float: left;
     position: relative;
     transition: box-shadow .6s;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.50);
@@ -298,8 +300,11 @@ a {
     font-size: 40px;
     font-weight: lighter;
 
+    animation-fill-mode: forwards;
+    visibility: hidden;
+    z-index: 3;
     position: absolute;
-    margin-top: 43%;
+    margin-top: 45%;
     transform: none;
     left: 0;
 }
@@ -314,10 +319,35 @@ a {
     font-size: 40px;
     font-weight: lighter;
 
+    visibility: hidden;
+    z-index: 3;
     position: absolute;
     animation-fill-mode: forwards;
-    margin-bottom: 80%;
-    margin-left: 90.7%;
-    float: right;
+    margin-top: 45%;
+    right: 0;
     transform: none;
+}
+
+.most-popular-slide-show button:hover {
+    cursor: pointer;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        visibility: hidden;
+        opacity: 1;
+    }
 }

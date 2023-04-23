@@ -27,4 +27,3 @@ function activatePaginationLink() {
 function checkDigit(x) {
     return x >= '0' && x <= '9';
 }
-

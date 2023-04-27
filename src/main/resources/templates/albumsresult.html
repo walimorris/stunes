@@ -60,6 +60,7 @@
         <a th:if="${iStat.count} == 10" th:href="'/albums/' + ${path} + '?' + ${searchterm} + '=' + ${searchValue} + '&page=' + ${page + 1} + '&size=12'">&raquo;</a>
     </div>
 </div>
+<script type="text/javascript" th:src="@{/js/site-logo-actions.js}"></script>
 <script type="text/javascript" th:src="@{/js/pagination-actions.js}"></script>
 </body>
 </html>

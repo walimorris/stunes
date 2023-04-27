@@ -234,3 +234,14 @@ a {
     color: #1e1e1e !important;
     font-weight: normal !important;
 }
+
+#employee-image {
+    width: 260px;
+    height: 250px;
+    background: #000;
+    border-radius: 50%;
+}
+
+.employee-info {
+    font-size: 12px;
+}

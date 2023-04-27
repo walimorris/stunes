@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <link rel="stylesheet" href="../static/css/performance.css" th:href="@{/css/performance.css}" />
     <link rel="icon" href="../public/img/favicon.ico" th:href="@{/img/favicon.ico}" />
 
@@ -23,10 +24,6 @@
     </div>
 </nav>
 <div class="container">
-    <h2>Performance Metrics</h2>
-
-    <p>View Top Performing Employees, Top paying customers and more!<p>
-    <h1>Selections:</h1>
     <p>Top Paying Customers</p>
     <form th:action="@{/performance/topfivecustomers}" method="post">
         <button type="submit">Top 5</button>
@@ -36,5 +33,6 @@
         <button type="submit">Top 5</button>
     </form>
 </div>
+<script type="text/javascript" th:src="@{/js/site-logo-actions.js}"></script>
 </body>
 </html>

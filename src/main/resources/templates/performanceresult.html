@@ -75,12 +75,12 @@
                 <div id="slideSet">
                     <button id="prev-button" th:text="'<'"></button>
                     <div class="paused" th:id="'slide-' + ${i.count}" th:each="employee, i : ${topfiveemployees}">
-                        <h1 th:text="${employee.firstName} + ' ' + ${employee.lastName}"></h1>
-                        <h2 th:text="${employee.title}"></h2>
-                        <h2 th:text="'Reports to ' + ${employee.reportsTo}"></h2>
-                        <h2 th:text="${employee.email}"></h2>
+                        <h1 class="employee-info" th:text="${employee.firstName} + ' ' + ${employee.lastName}"></h1>
+                        <h2 class="employee-info" th:text="${employee.title}"></h2>
+                        <h2 class="employee-info" th:text="'Reports to ' + ${employee.reportsTo}"></h2>
+                        <h2 class="employee-info" th:text="${employee.email}"></h2>
                         <p th:text="${topfiveinvoices[i.index].total}"></p>
-                        <img alt="employee-image" src="" th:src="${employee.image}">
+                        <img id="employee-image" alt="employee-image" src="" th:src="${employee.image}">
                     </div>
                     <button id="next-button" th:text="'>'"></button>
                 </div>
@@ -96,6 +96,7 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" th:src="@{/js/site-logo-actions.js}"></script>
 <script type="text/javascript" th:src="@{/js/employee-slide-component.js}"></script>
 </body>
 </html>

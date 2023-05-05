@@ -16,6 +16,15 @@
  *     3. client_event: click event which triggered stream creation
  *     4. client_timestamp: time the click event occurred
  *
+ * Example click stream json object that'll be posted to kinesis stream:
+ *
+ *     {
+ *         "user_id": "hitman",
+ *         "device_type": "desktop",
+ *         "client_event": "author_linkedin_link_navigation",
+ *         "client_timestamp": "2023-05-04T21:03:02"
+ *     }
+ *
  * Click events are then passed to an API endpoint and processed into an Amazon Kinesis stream for further
  * storage and analytics purposes. Personal user data will never be tracked or stored.
  */

@@ -11,18 +11,18 @@
  * This is a simple tracker and is built for extension and additions to trackable properties. Currently
  * tracked properties are:
  *
- *     1. user_id: userName
- *     2. device_type: device being used
- *     3. client_event: click event which triggered stream creation
- *     4. client_timestamp: time the click event occurred
+ *     1. userId: userName
+ *     2. deviceType: device being used
+ *     3. clickEvent: click event which triggered stream creation
+ *     4. clientTimestamp: time the click event occurred
  *
  * Example click stream json object that'll be posted to kinesis stream:
  *
  *     {
- *         "user_id": "hitman",
- *         "device_type": "desktop",
- *         "client_event": "author_linkedin_link_navigation",
- *         "client_timestamp": "2023-05-04T21:03:02"
+ *         "userId": "hitman",
+ *         "deviceType": "desktop",
+ *         "clickEvent": "author_linkedin_link_navigation",
+ *         "clientTimestamp": "2023-05-04T21:03:02"
  *     }
  *
  * Click events are then passed to an API endpoint and processed into an Amazon Kinesis stream for further
@@ -41,7 +41,7 @@ function track(e) {
         // build stream record
         const jsonStreamRecord = createStreamRecord(clickDataName);
         console.log(jsonStreamRecord);
-        // post stream record to api endpoint to stream to kinesis
+        postClickStreamRecord(jsonStreamRecord);
     }
 }
 
@@ -54,10 +54,10 @@ function track(e) {
  */
 function createStreamRecord(dataEventName) {
     let data = {};
-    data['user_id'] = getUserName();
-    data['device_type'] = getDeviceType();
-    data['client_event'] = dataEventName;
-    data['client_timestamp'] = currentTimeStamp();
+    data['userId'] = getUserName();
+    data['deviceType'] = getDeviceType();
+    data['clickEvent'] = dataEventName;
+    data['clientTimestamp'] = currentTimeStamp();
     return data;
 }
 
@@ -115,4 +115,35 @@ function getDeviceType() {
         return "mobile";
     }
     return "desktop";
+}
+
+/**
+ * Utilizes internal spring API to post click stream record with event properties.
+ * The following are the expected event properties:
+ *
+ * {
+ *     userId: String,
+ *     deviceType: String,
+ *     clickEvent: String,
+ *     clientTimeStamp
+ * }
+ *
+ * @param jsonRecord
+ */
+function postClickStreamRecord(jsonRecord) {
+    $.ajax({
+        async: false,
+        contentType: "application/json; charset=UTF-8",
+        url : "/clickstream/singlerecord",
+        type: "POST",
+        data : JSON.stringify(jsonRecord),
+        success: function(data, textStatus) {
+            console.log(data);
+            console.log(textStatus)
+        },
+        error: function (textStatus, errorThrown) {
+            console.log("error: ");
+            console.log(textStatus);
+        }
+    });
 }

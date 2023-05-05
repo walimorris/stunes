@@ -17,10 +17,10 @@
     <nav>
         <img class="logo-img" alt="logo" src="" th:src="@{/images/emblem.png}">
         <div class="navbar">
-            <a href="/">Home</a>
-            <a href="/albums">Albums Search</a>
-            <a href="/artists">Artists Search</a>
-            <a href="/performance">Performance Metrics</a>
+            <a data-clickable-name="home_page_navigation" href="/">Home</a>
+            <a data-clickable-name="albums_page_navigation" href="/albums">Albums Search</a>
+            <a data-clickable-name="artists_page_navigation" href="/artists">Artists Search</a>
+            <a data-clickable-name="performance_page_navigation" href="/performance">Performance Metrics</a>
         </div>
     </nav>
     <section class="about" id="My Projects">
@@ -28,12 +28,18 @@
             <div class="title">
                 <span>Stunes uses multiple AWS Services and web technologies.<br>
                     Inspired by Robert Shield's
-                    <a target="_blank" href="https://www.amazon.com/SQL-QuickStart-Guide-Simplified-Manipulating/dp/1945051752">SQL Quickstart Guide</a>.</span>
+                    <a target="_blank"
+                       data-clickable-name="quick_start_guide_link_navigation"
+                       href="https://www.amazon.com/SQL-QuickStart-Guide-Simplified-Manipulating/dp/1945051752">SQL Quickstart Guide
+                    </a>
+                </span>
             </div>
             <div class="boxes">
                 <div class="box">
                     <div class="topic">
-                        <a href="https://www.java.com/en/" target="_blank">
+                        <a href="https://www.java.com/en/"
+                           data-clickable-name="java_link_navigation"
+                           target="_blank">
                             Java
                         </a>
                     </div>
@@ -45,7 +51,9 @@
                 </div>
                 <div class="box">
                     <div class="topic">
-                        <a href="https://www.mysql.com/" target="_blank">
+                        <a href="https://www.mysql.com/"
+                           data-clickable-name="mysql_link_navigation"
+                           target="_blank">
                             MySQL
                         </a>
                     </div>
@@ -57,7 +65,9 @@
                 </div>
                 <div class="box">
                     <div class="topic">
-                        <a href="https://www.thymeleaf.org/" target="_blank">
+                        <a href="https://www.thymeleaf.org/"
+                           data-clickable-name="thymeleaf_link_navigation"
+                           target="_blank">
                             Thymeleaf
                         </a>
                     </div>
@@ -69,7 +79,9 @@
                 </div>
                 <div class="box">
                     <div class="topic">
-                        <a href="https://spring.io/" target="Spring Framework">
+                        <a href="https://spring.io/"
+                           data-clickable-name="spring_boot_link_navigation"
+                           target="Spring Framework">
                             Spring Framework
                         </a>
                     </div>
@@ -81,7 +93,9 @@
                 </div>
                 <div class="box">
                     <div class="topic">
-                        <a href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/" target="_blank">
+                        <a href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/"
+                           data-clickable-name="spring_data_link_navigation"
+                           target="_blank">
                             Spring Data JPA
                         </a>
                     </div>
@@ -93,7 +107,9 @@
                 </div>
                 <div class="box">
                     <div class="topic">
-                        <a href="https://hibernate.org" target="_blank">
+                        <a href="https://hibernate.org"
+                           data-clickable-name="hibernate_link_navigation"
+                           target="_blank">
                             Hibernate
                         </a>
                     </div>
@@ -106,7 +122,9 @@
                 </div>
                 <div class="box">
                     <div class="topic">
-                        <a href="https://jquery.com/" target="_blank">
+                        <a href="https://jquery.com/"
+                           data-clickable-name="jquery_link_navigation"
+                           target="_blank">
                             jQuery
                         </a>
                     </div>
@@ -119,7 +137,9 @@
                 </div>
                 <div class="box">
                     <div class="topic">
-                        <a href="https://aws.amazon.com/rds/aurora/" target="_blank">
+                        <a href="https://aws.amazon.com/rds/aurora/"
+                           data-clickable-name="amazon_aurora_link_navigation"
+                           target="_blank">
                             Amazon Aurora
                         </a>
                     </div>
@@ -131,7 +151,9 @@
                 </div>
                 <div class="box">
                     <div class="topic">
-                        <a href="https://aws.amazon.com/secrets-manager/" target="_blank">
+                        <a href="https://aws.amazon.com/secrets-manager/"
+                           data-clickable-name="amazon_secrets_manager_link_navigation"
+                           target="_blank">
                             AWS Secrets Manager
                         </a>
                     </div>
@@ -149,12 +171,14 @@
             <span>
                 Created By
                 <a href="https://www.linkedin.com/in/wali-m/"
+                   data-clickable-name="author_linkedin_link_navigation"
                    target="_blank">
                     Wali Morris - AWS Solutions Architect/Java Developer
                 </a>
             </span>
         </div>
     </footer>
+    <script type="text/javascript" th:src="@{/js/simple-click-tracking.js}"></script>
     <script type="text/javascript" th:src="@{/js/site-logo-actions.js}"></script>
 </body>
 </html>

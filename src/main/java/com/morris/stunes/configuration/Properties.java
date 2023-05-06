@@ -30,6 +30,14 @@ public class Properties {
     }
 
     @Bean
+    public Map<String, String> KinesisSecretsProperties() {
+        Map<String, String> kinesisSecrets = new HashMap<>();
+        kinesisSecrets.put("kinesis-stream-region", environment.getProperty("kinesis.sr"));
+        kinesisSecrets.put("kinesis-stream-name", environment.getProperty("kinesis.sn"));
+        return kinesisSecrets;
+    }
+
+    @Bean
     public Map<String, String> JPADatasourceProperties() {
         Map<String, String> jpaDatasourceProperties = new HashMap<>();
         jpaDatasourceProperties.put("hibernate-dialect", environment.getProperty("spring.jpa.properties.hibernate.dialect"));

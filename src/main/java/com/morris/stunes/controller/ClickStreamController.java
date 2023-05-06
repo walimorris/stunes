@@ -17,10 +17,9 @@ public class ClickStreamController {
 
     @PostMapping("/clickstream/singlerecord")
     public ResponseEntity<?> postClickStreamRecord(@RequestBody ClickStreamRecord clickStreamRecord) {
-        String clickEvent = clickStreamService.clickStreamString(clickStreamRecord);
-        if (clickEvent != null) {
-            System.out.println(clickEvent);
-            return ResponseEntity.ok(HttpStatus.OK);
+        String clickEventSequenceNumber = clickStreamService.writeClickStream(clickStreamRecord);
+        if (clickEventSequenceNumber != null) {
+            return ResponseEntity.ok(clickEventSequenceNumber);
         }
         return ResponseEntity.ok(HttpStatus.BAD_REQUEST);
     }

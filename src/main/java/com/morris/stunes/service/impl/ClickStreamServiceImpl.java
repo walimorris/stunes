@@ -6,6 +6,7 @@ import com.morris.stunes.model.ClickStreamRecord;
 import com.morris.stunes.service.ClickStreamService;
 import com.morris.stunes.util.ClientHelper;
 import com.morris.stunes.util.KinesisHelper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import software.amazon.awssdk.core.SdkBytes;
 import software.amazon.awssdk.services.kinesis.KinesisClient;
@@ -17,6 +18,12 @@ import java.nio.ByteBuffer;
 
 @Service
 public class ClickStreamServiceImpl implements ClickStreamService {
+
+    @Autowired
+    KinesisHelper kinesisHelper;
+
+    @Autowired
+    ClientHelper clientHelper;
 
     @Override
     public String writeClickStream(ClickStreamRecord record) {
@@ -65,8 +72,7 @@ public class ClickStreamServiceImpl implements ClickStreamService {
      */
     private PutRecordResponse writeClickStreamRecordToKinesis(byte[] recordBytes, ClickStreamRecord record) {
         PutRecordResponse putRecordResponse;
-        KinesisHelper kinesisHelper = new KinesisHelper();
-        KinesisClient kinesisClient = ClientHelper.getKinesisClient(kinesisHelper.getKinesisRegion());
+        KinesisClient kinesisClient = clientHelper.getKinesisClient();
         PutRecordRequest putRecordRequest = PutRecordRequest.builder()
                 .streamName(kinesisHelper.getKinesisStreamName())
                 .partitionKey(record.getUserId())

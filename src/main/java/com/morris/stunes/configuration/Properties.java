@@ -1,11 +1,10 @@
 package com.morris.stunes.configuration;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
-import org.springframework.core.env.Environment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,32 +16,53 @@ import java.util.Map;
 })
 public class Properties {
 
-    @Autowired
-    Environment environment;
+    @Value("${secrets.awn}")
+    private String secretsAwn;
+
+    @Value("${secrets.awr}")
+    private String secretAwr;
+
+    @Value("${secrets.awu}")
+    private String secretsAwu;
+
+    @Value("${kinesis.sr}")
+    private String kinesisSr;
+
+    @Value("${kinesis.sn}")
+    private String kinesisSn;
+
+    @Value("${spring.jpa.properties.hibernate.dialect}")
+    private String hibernateDialect;
+
+    @Value("${spring.jpa.show-sql}")
+    private String showSql;
+
+    @Value("${spring.jpa.hibernate.ddl-auto}")
+    private String ddlAuto;
 
     @Bean
     public Map<String, String> AuroraSecretsProperties() {
         Map<String, String> auroraSecrets = new HashMap<>();
-        auroraSecrets.put("aurora-writer-name", environment.getProperty("secrets.awn"));
-        auroraSecrets.put("aurora-writer-region", environment.getProperty("secrets.awr"));
-        auroraSecrets.put("aurora-writer-url", environment.getProperty("secrets.awu"));
+        auroraSecrets.put("aurora-writer-name", secretsAwn);
+        auroraSecrets.put("aurora-writer-region", secretAwr);
+        auroraSecrets.put("aurora-writer-url", secretsAwu);
         return auroraSecrets;
     }
 
     @Bean
     public Map<String, String> KinesisSecretsProperties() {
         Map<String, String> kinesisSecrets = new HashMap<>();
-        kinesisSecrets.put("kinesis-stream-region", environment.getProperty("kinesis.sr"));
-        kinesisSecrets.put("kinesis-stream-name", environment.getProperty("kinesis.sn"));
+        kinesisSecrets.put("kinesis-stream-region", kinesisSr);
+        kinesisSecrets.put("kinesis-stream-name", kinesisSn);
         return kinesisSecrets;
     }
 
     @Bean
     public Map<String, String> JPADatasourceProperties() {
         Map<String, String> jpaDatasourceProperties = new HashMap<>();
-        jpaDatasourceProperties.put("hibernate-dialect", environment.getProperty("spring.jpa.properties.hibernate.dialect"));
-        jpaDatasourceProperties.put("show-sql", environment.getProperty("spring.jpa.show-sql"));
-        jpaDatasourceProperties.put("ddl-auto", environment.getProperty("spring.jpa.hibernate.ddl-auto"));
+        jpaDatasourceProperties.put("hibernate-dialect", hibernateDialect);
+        jpaDatasourceProperties.put("show-sql", showSql);
+        jpaDatasourceProperties.put("ddl-auto", ddlAuto);
         return jpaDatasourceProperties;
     }
 }

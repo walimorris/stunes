@@ -2,8 +2,8 @@ package com.morris.stunes.util;
 
 import com.morris.stunes.configuration.Properties;
 import com.morris.stunes.service.ClickStreamService;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
@@ -11,18 +11,20 @@ import java.util.Map;
  * @code com.morris.stunes.util.KinesisHelper - is a utility class that reduces redundancy when
  * calling common Amazon Kinesis features and functionality utilized in the stunes application.
  */
+@Component("kinesisHelper")
 public class KinesisHelper {
 
-    private static final String KINESIS_STREAM_NAME = "kinesis-stream-name";
-    private static final String KINESIS_REGION = "kinesis-stream-region";
-
     private final Map<String, String> kinesisProperties;
+    private final String kinesisRegion;
+    private final String kinesisStreamName;
 
-    public KinesisHelper() {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Properties.class);
-        Properties kinesisPropertiesContext = context.getBean(Properties.class);
-        this.kinesisProperties = kinesisPropertiesContext.KinesisSecretsProperties();
-        context.close();
+    public KinesisHelper(@Qualifier("kinesisProperties") Map<String, String> kinesisProperties,
+                         @Qualifier("kinesisRegion") String kinesisRegion,
+                         @Qualifier("kinesisStreamName") String kinesisStreamName) {
+
+        this.kinesisProperties = kinesisProperties;
+        this.kinesisRegion = kinesisRegion;
+        this.kinesisStreamName = kinesisStreamName;
     }
 
     /**
@@ -33,7 +35,7 @@ public class KinesisHelper {
      * @see Properties
      */
     public String getKinesisStreamName() {
-        return this.kinesisProperties.get(KINESIS_STREAM_NAME);
+        return this.kinesisStreamName;
     }
 
     /**
@@ -44,6 +46,6 @@ public class KinesisHelper {
      * @see Properties
      */
     public String getKinesisRegion() {
-        return this.kinesisProperties.get(KINESIS_REGION);
+        return this.kinesisRegion;
     }
 }

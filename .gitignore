@@ -36,3 +36,4 @@ build/
 /src/main/resources/application.properties
 /src/main/resources/secrets.properties
 /src/main/resources/META-INF/persistence.xml
+/src/main/resources/static/stunes_manifest.json
